@@ -94,3 +94,4 @@ tmp
 _yardoc
 doc/
 .env
+*~
