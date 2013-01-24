@@ -62,5 +62,8 @@ module Launchvn
     config.serve_static_assets = true
     config.static_cache_control = "public, max-age=31536000" # cache for 1 year
     config.assets.version = '0.0.1' # change this line to invalidate asset cached
+
+    # Logger for unicorn
+    config.logger = Logger.new(STDOUT)
   end
 end
