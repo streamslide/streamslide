@@ -40,12 +40,12 @@ So, if we change any assets files, we need to invalidate our cache by changing
 `assets.version` variable in `config/application.rb` files
 
 ```ruby
-    # Assets configuration
-    config.assets.enabled = true
-    config.assets.initialize_on_precompile = false
-    config.serve_static_assets = true
-    config.static_cache_control = "public, max-age=31536000" # cache for 1 year
-    config.assets.version = '0.0.1' # change this line to invalidate asset cached
+# Assets configuration
+config.assets.enabled = true
+config.assets.initialize_on_precompile = false
+config.serve_static_assets = true
+config.static_cache_control = "public, max-age=31536000" # cache for 1 year
+config.assets.version = '0.0.1' # change this line to invalidate asset cached
 ```
 
 ### Migrate database
