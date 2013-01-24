@@ -55,12 +55,12 @@ module Launchvn
     # parameters by using an attr_accessible or attr_protected declaration.
     config.active_record.whitelist_attributes = true
 
-    # Enable the asset pipeline
+
+    # Assets configuration
     config.assets.enabled = true
-
-    # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
-
     config.assets.initialize_on_precompile = false
+    config.serve_static_assets = true
+    config.static_cache_control = "public, max-age=31536000" # cache for 1 year
+    config.assets.version = '0.0.1' # change this line to invalidate asset cached
   end
 end
