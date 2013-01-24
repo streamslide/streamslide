@@ -10,7 +10,7 @@ class AuthenticationsController < ApplicationController
     if authentication
       sign_in_old_user authentication, auth
     else
-      create_new_user authentication
+      create_new_user authentication, auth
     end
   end
 
