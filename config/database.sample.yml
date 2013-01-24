@@ -1,0 +1,29 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: slidestream_dev
+  username: username
+  password: password
+  host: localhost
+  port: yourport
+  pool: 5
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: slidestream_test
+  username: username
+  password: password
+  host: localhost
+  port: yourport
+  pool: 5
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: slidestream_prod
+  username: username
+  password: password
+  host: localhost
+  port: yourport
+  pool: 5
