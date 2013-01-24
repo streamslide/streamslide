@@ -11,6 +11,28 @@
 4. bundle install
 5. Start hacking this project
 
+## Start sidekiq
+``sidekiq`` is job processing based on Redis.
+You should install Redis on your machine to run it
+
+## Setup enviroment variables
+Our application need to run on 3 environments: local environment, staging, and
+production. That why, we use environment variable to config our app.
+
+Here is some variables we need setup in local environment.
+You can put these at the end of your `~/.bash_profile` file (if you Mac OSX), or
+`~/.bashrc` file (if you use Linux)
+
+```bash
+export STREAMSLIDE_FACEBOOK_APP_ID=<value>
+export STREAMSLIDE_FACEBOOK_APP_SECRET=<value>
+export STREAMSLIDE_SIDEKIQ_ROOT_PASSWORD=<value>
+export AWS_ACCESS_KEY_ID=<value>
+export AWS_SECRET_ACCESS_KEY=<value>
+export AWS_S3_BUCKET_NAME=<value>
+export REDIS_URL=<value>
+```
+
 ## 2. Deployment
 
 ### Add heroku remote to our git

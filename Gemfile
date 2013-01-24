@@ -12,6 +12,9 @@ gem 'omniauth-facebook'
 gem 's3_direct_upload'
 gem 'unicorn'
 gem 'pg'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 
 group :development do
   gem 'sqlite3'

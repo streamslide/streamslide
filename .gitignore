@@ -95,3 +95,4 @@ _yardoc
 doc/
 .env
 *~
+Procfile.local
