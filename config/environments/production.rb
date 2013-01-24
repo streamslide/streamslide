@@ -68,4 +68,5 @@ Launchvn::Application.configure do
 
   # Config for devise email
   config.action_mailer.default_url_options = { :host => 'http://launchvn.com' }
+  config.assets.compile = true
 end
