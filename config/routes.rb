@@ -1,4 +1,3 @@
-require 'admin_constraint'
 require 'sidekiq/web'
 
 Launchvn::Application.routes.draw do
