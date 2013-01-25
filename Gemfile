@@ -22,6 +22,7 @@ group :development do
 	gem 'pry-rails', '0.1.6'
 	gem 'pry', '0.9.9.4'
 	gem 'better_errors'
+	gem 'binding_of_caller'
 end
 
 group :assets do
