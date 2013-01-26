@@ -1,4 +1,4 @@
 require 'test_helper'
 
-class UserTest < ActiveSupport::TestCase
+class UserTest < MiniTest::Unit::TestCase
 end

@@ -13,16 +13,19 @@ gem 's3_direct_upload'
 gem 'unicorn'
 gem 'pg'
 gem 'sidekiq'
+gem 'sidekiq-status'
+gem 'httparty'
 gem 'sinatra', require: false
 gem 'slim'
+
 
 group :development do
   gem 'sqlite3'
   gem 'debugger'
-	gem 'pry-rails', '0.1.6'
-	gem 'pry', '0.9.9.4'
-	gem 'better_errors'
-	gem 'binding_of_caller'
+  gem 'pry-rails', '0.1.6'
+  gem 'pry', '0.9.9.4'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :assets do

@@ -1,4 +1,4 @@
 require 'test_helper'
 
-class AuthenticationTest < ActiveSupport::TestCase
+class AuthenticationTest < MiniTest::Unit::TestCase
 end
