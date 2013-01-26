@@ -97,3 +97,4 @@ doc/
 *~
 Procfile.local
 *.pdf
+lib/tasks/heroku.rake.bk
