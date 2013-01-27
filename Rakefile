@@ -13,4 +13,11 @@ namespace :test do
     t.pattern = 'test/worker/**/*_test.rb'
     t.verbose = true
   end
+
+  desc "Test libs"
+  Rake::TestTask.new :libs do |t|
+    t.libs << 'test'
+    t.pattern = 'test/lib/**/*_test.rb'
+    t.verbose = true
+  end
 end

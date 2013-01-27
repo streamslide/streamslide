@@ -14,11 +14,9 @@ class UploadController < ApplicationController
   end
 
   def job
-    job_id = params[:job_id]
-    result = Sidekiq::Status.send :read_field_for_id, job_id, :result
+    job = Job.new params[:job_id]
+    ret = job.get_fields :total_page, :processed_page
 
-    respond_to do |format|
-      format.json { render :json => { :result => result } }
-    end
+    render :json => ret.to_json
   end
 end

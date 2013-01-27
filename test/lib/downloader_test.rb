@@ -9,14 +9,14 @@ describe Downloader do
 
   describe "download" do
     it "test download file with http" do
-      skip "test download cost time"
+      skip "test download cost time" unless ENV['TEST_REAL_DOWNLOAD']
       downloader = Downloader.new "http://#{TEST_URL}"
       downloader.store
       assert_file_equal FIXTURE_FILE, downloader.filepath
     end
 
     it "test file with https" do
-      skip "test download cost time"
+      skip "test download cost time" unless ENV['TEST_REAL_DOWNLOAD']
       downloader = Downloader.new "https://#{TEST_URL}"
       downloader.store
       assert_file_equal FIXTURE_FILE, downloader.filepath

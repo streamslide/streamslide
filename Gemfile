@@ -17,6 +17,9 @@ gem 'sidekiq-status'
 gem 'httparty'
 gem 'sinatra', require: false
 gem 'slim'
+gem 'eventmachine'
+gem 'em-http-request'
+gem 'happening'
 
 
 group :development do

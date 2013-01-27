@@ -1,5 +1,6 @@
 require 'net/http'
 
+
 # Download file with simple, easy, independent and memory care way
 # Usage
 #   > downloader = Downloader.new 'http://s3.amazoneaws.com/bucket/test.pdf'
@@ -17,10 +18,7 @@ class Downloader
   end
 
   def filepath
-    if @filepath.nil? then
-      @filepath = nil
-    end
-    @filepath
+    @filepath ||= get_path nil
   end
 
   def store(path = nil)
@@ -41,6 +39,6 @@ class Downloader
   private
 
   def get_path(value = nil)
-    if value.nil? then "/tmp/#{SecureRandom.hex(12)}#{file_extension}" else value end
+    if value.nil? then "/tmp/#{file_id}.#{file_extension}" else value end
   end
 end
