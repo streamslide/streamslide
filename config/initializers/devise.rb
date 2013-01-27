@@ -208,4 +208,10 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
+  require "omniauth-facebook"
+  config.omniauth :facebook, 
+                  ENV['STREAMSLIDE_FACEBOOK_APP_ID'], 
+                  ENV['STREAMSLIDE_FACEBOOK_APP_SECRET'],
+                  :scope => 'email, publish_stream',
+                  :strategy_class => OmniAuth::Strategies::Facebook
 end
