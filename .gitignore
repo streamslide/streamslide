@@ -63,6 +63,7 @@ pickle-email-*.html
 
 # Mac finder artifacts
 .DS_Store
+dump.rdb
 
 # Netbeans project directory
 /nbproject/
