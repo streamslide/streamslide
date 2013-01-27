@@ -6,9 +6,9 @@ gem "haml-rails", ">= 0.3.4", :group => :development
 gem "bootstrap-sass", ">= 2.0.4.0"
 gem "therubyracer", :group => :assets, :platform => :ruby
 
-gem 'devise'
-gem 'omniauth'
-gem 'omniauth-facebook'
+gem 'devise', '2.2.2'
+gem 'omniauth', '1.1.1'
+gem 'omniauth-facebook', '1.4.1'
 gem 's3_direct_upload'
 gem 'unicorn'
 gem 'pg'

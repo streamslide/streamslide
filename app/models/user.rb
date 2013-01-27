@@ -2,20 +2,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, 
+  attr_accessible :email, :name,
                   :password, :password_confirmation, 
                   :remember_me, 
                   :provider, :uid
   has_many :authentications, :dependent => :delete_all
-
-  def apply_omniauth(auth)
-    self.email = auth.info['email']
-    self.image_url = auth.info['image']
-    authentications.build(
-      :provider => auth['provider'], :uid => auth['uid'],
-      :token => auth['credentials']['token'])
-  end
-  
+ 
   def self.new_with_session(params, session)
       super.tap do |user|
         if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
