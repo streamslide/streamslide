@@ -6,20 +6,20 @@ gem "haml-rails", ">= 0.3.4", :group => :development
 gem "bootstrap-sass", ">= 2.0.4.0"
 gem "therubyracer", :group => :assets, :platform => :ruby
 
-gem 'devise', '2.2.2'
-gem 'omniauth', '1.1.1'
-gem 'omniauth-facebook', '1.4.1'
-gem 's3_direct_upload'
-gem 'unicorn'
-gem 'pg'
-gem 'sidekiq'
-gem 'sidekiq-status'
-gem 'httparty'
+gem 'devise', '~>2.2.2'
+gem 'omniauth', '~>1.1.1'
+gem 'omniauth-facebook', '~>1.4.1'
+gem 's3_direct_upload', '~>0.0.8'
+gem 'unicorn' , '~>4.5.0'
+gem 'pg' , '~>0.14.1'
+gem 'sidekiq' , '~>2.6.5'
+gem 'sidekiq-status', '~>0.1.0'
+gem 'httparty', '~>0.9.0'
 gem 'sinatra', require: false
-gem 'slim'
-gem 'eventmachine'
-gem 'em-http-request'
-gem 'happening'
+gem 'slim', '~>1.3.6'
+gem 'eventmachine', '~>1.0.0'
+gem 'em-http-request', '~>1.0.3'
+gem 'happening', '~>0.2.5'
 
 
 group :development do
