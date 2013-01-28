@@ -17,6 +17,14 @@ class UploadController < ApplicationController
     job = Job.new params[:job_id]
     ret = job.get_fields :total_page, :processed_page
 
+    ret[:total_page] ||= 0
+    ret[:processed_page] ||= 0
+    if ret[:processed_page].to_i == 2 * ret[:total_page].to_i and ret[:total_page].to_i > 0 then
+      ret[:status] = "complete"
+    else
+      ret[:status] = "processing"
+    end
+
     render :json => ret.to_json
   end
 end
