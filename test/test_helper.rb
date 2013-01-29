@@ -3,6 +3,8 @@ require File.expand_path('../../config/environment', __FILE__)
 
 require 'minitest/unit'
 require 'minitest/spec'
+require 'minitest/mock'
+require 'sidekiq/testing'
 require 'digest'
 require 'rails/test_help'
 

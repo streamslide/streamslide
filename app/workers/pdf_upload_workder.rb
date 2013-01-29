@@ -31,7 +31,7 @@ class UploadWorker
     # are downloading and saving to same location
     unless FileTest.exists?(pdf_file_path) then
       pdf_file_path = "/tmp/#{uuid}.pdf"
-      downloader = Downloader.new url
+      downloader = Downloader.new @url
       downloader.store pdf_file_path
     end
 
@@ -65,13 +65,11 @@ class UploadWorker
     EM.run do
       total_page = @end_page - @start_page + 1
       pending = total_page
-
       job = Job.new @job_id
 
-      total_page.times do |index|
+      @image_files.size.times do |index|
         slide_index = @start_page + index
         key = "slide/#{@file_id}/#{image_type_name}_#{slide_index}.jpg"
-
         upload_image_file(@image_files[index], key) do
           job.incr :processed_page
           puts "upload file to #{key}"
@@ -99,6 +97,8 @@ class UploadWorker
       convert_pdf_to_images
       upload_images_to_s3
     end
+    pid, status = Process.wait2
+    raise Exception("upload failed") unless status == 0
   end
 
 end

@@ -24,11 +24,14 @@ gem 'happening', '~>0.2.5'
 
 group :development do
   gem 'sqlite3'
-  gem 'debugger'
+  gem 'debugger', '~> 1.1.3'
   gem 'pry-rails', '0.1.6'
   gem 'pry', '0.9.9.4'
+  gem 'pry-stack_explorer'
+  gem 'pry-debugger'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'minitest', '~> 4.5.0'
 end
 
 group :assets do
@@ -36,4 +39,3 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
-
