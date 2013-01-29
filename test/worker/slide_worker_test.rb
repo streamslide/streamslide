@@ -33,7 +33,7 @@ describe SlideWorker do
 
     it "dispatch job" do
       pdf = PDFHandler.new nil
-      pdf.instance_variable_set(:@page_count, 16)
+      pdf.instance_variable_set(:@page_count, SlideWorker.images_per_job + 1)
       worker.instance_variable_set(:@file_id, 'file_id')
       worker.instance_variable_set(:@pdf, pdf)
 
@@ -43,7 +43,7 @@ describe SlideWorker do
 
     it "dispatch job with small number of image" do
       pdf = PDFHandler.new nil
-      pdf.instance_variable_set(:@page_count, 4)
+      pdf.instance_variable_set(:@page_count, SlideWorker.images_per_job - 1)
       worker.instance_variable_set(:@file_id, 'file_id')
       worker.instance_variable_set(:@pdf, pdf)
 

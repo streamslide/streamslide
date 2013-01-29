@@ -2,7 +2,11 @@ class SlideWorker
   include Sidekiq::Worker
   include Sidekiq::Status::Worker
 
-  @@images_per_job = 15
+  @@images_per_job = 5
+
+  def self.images_per_job
+    @@images_per_job
+  end
 
   def file_id
     unless @file_id then
