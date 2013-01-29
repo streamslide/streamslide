@@ -1,4 +1,4 @@
-# STREMSLIDE
+# STREAMSLIDE
 
 *Side project to change the world*
 
