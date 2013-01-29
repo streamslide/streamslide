@@ -19,7 +19,11 @@ class UploadController < ApplicationController
 
     ret[:total_page] ||= 0
     ret[:processed_page] ||= 0
-    if ret[:processed_page].to_i == 2 * ret[:total_page].to_i and ret[:total_page].to_i > 0 then
+
+    has_page = ret[:total_page].to_i > 0
+    finish_processing = ret[:processed_page].to_i >= ret[:total_page].to_i
+
+    if has_page and finish_processing then
       ret[:status] = "complete"
     else
       ret[:status] = "processing"
