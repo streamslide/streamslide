@@ -34,7 +34,7 @@ class SlideWorker
 
     number_of_jobs.times do |index|
       start_page = index * @@images_per_job + 1
-      end_page = start_page + @@images_per_job
+      end_page = start_page + @@images_per_job - 1
       end_page = pdf.page_count if end_page > pdf.page_count
 
       UploadWorker.perform_async(@id, @url, file_id, start_page, end_page, false)
