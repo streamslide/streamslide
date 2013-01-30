@@ -65,8 +65,10 @@ describe UploadWorker do
       Job.stub(:new, job) do
         File.stub(:read, lambda { |file| nil }) do
           Happening::S3::Item.instance_stub(:put, fussy) do
-            worker.upload_images_to_s3
-            job.verify
+            capture_io do
+              worker.upload_images_to_s3
+              job.verify
+            end
           end
         end
       end
