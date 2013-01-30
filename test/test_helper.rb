@@ -5,6 +5,7 @@ require 'minitest/unit'
 require 'minitest/spec'
 require 'minitest/mock'
 require 'sidekiq/testing'
+require 'stub_instance'
 require 'digest'
 require 'rails/test_help'
 

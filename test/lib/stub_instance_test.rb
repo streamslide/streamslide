@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'stub_instance'
 
 describe Object do
   class SimpleObject
