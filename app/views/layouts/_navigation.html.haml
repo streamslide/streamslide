@@ -3,7 +3,7 @@
   - if user_signed_in?
     = link_to "edit", edit_user_registration_path
     = link_to "sign out", destroy_user_session_path, :method => :delete
+    = image_tag current_user.image_url,:height => '25', :width => '25'
   - else
     = link_to "sign in", new_user_session_path
     = link_to "register", new_user_registration_path
-     
