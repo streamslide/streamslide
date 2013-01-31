@@ -19,16 +19,19 @@ describe SlideWorker do
   end
 
   describe "when perform with an url" do
-    it "store pdf file" do
+    it "call store pdf file" do
       url = "http://s3.amazonaws.com/test/file_id/filename"
-      worker.instance_variable_set(:@url, url)
-
       downloader = MiniTest::Mock.new
-      downloader.expect(:store, nil, ['/tmp/file_id.pdf'])
-      worker.instance_variable_set(:@downloader, downloader)
 
-      worker.store_pdf_file
-      downloader.verify
+      Downloader.stub :new, downloader do
+        worker.stub :dispatch_job_to_uploader, nil do
+          worker.stub :update_job_in_redis, nil do
+            downloader.expect(:store, nil, ['/tmp/file_id.pdf'])
+            worker.perform(url)
+            downloader.verify
+          end
+        end
+      end
     end
 
     it "dispatch job" do
