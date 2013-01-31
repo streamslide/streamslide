@@ -77,3 +77,25 @@ When your code change database, please migrate database in heroku after deployin
 $> heroku run rake db:migrate --remote staging
 $> heroku run rake db:migrate --remote production
 ```
+
+### Adding githook
+
+``githook`` is folder contains hook for git. Currently, we have
+
+* ``pre-commit``  hook which will be called right after we commit our code.
+This hook will run our test to check does new code break old code or not.
+``pre-commit`` assume you use ``rvm`` and your ``rvm`` folder was located at
+``$HOME/.rvm/``. If you dont use ``rvm`` please remove line 2 in
+``githook/pre-commit``
+
+Set up ``pre-commit`` hook:
+
+```bash
+$> cd <streamslide> folder
+$> cd .git/hook
+$> ln -s ../../githook/pre-commit pre-commit
+```
+
+To check your setup is correct or not, please add some change to your local
+codebase and run ``git add . && git commit`` to check. If you see test was run,
+ it means good
