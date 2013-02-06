@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -39,4 +41,13 @@ class User < ActiveRecord::Base
     end
     user
   end
+
+  def avatar_url
+    if image_url.nil? then
+      "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email)}?s=50"
+    else
+      image_url
+    end
+  end
+
 end
