@@ -37,7 +37,8 @@ class SlideWorker
   end
 
   def update_job_in_redis
-    store :total_page => pdf.page_count, :processed_page => 0
+    store :total_page => pdf.page_count, :processed_page => 0,
+      :slide_id => @slide_id
   end
 
   def dispatch_job_to_uploader
@@ -54,8 +55,9 @@ class SlideWorker
   end
 
   def store_slide_info
-    Slide.create(:user_id => @user_id, :s3_key => file_id,
+    slide = Slide.create(:user_id => @user_id, :s3_key => file_id,
                  :pages => pdf.page_count, :filename => filename)
+    @slide_id = slide.id
   end
 
   def perform(user_id, url)

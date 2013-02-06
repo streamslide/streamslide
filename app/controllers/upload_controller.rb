@@ -15,7 +15,7 @@ class UploadController < ApplicationController
 
   def job
     job = Job.new params[:job_id]
-    ret = job.get_fields :total_page, :processed_page
+    ret = job.get_fields :total_page, :processed_page, :slide_id
 
     ret[:total_page] ||= 0
     ret[:processed_page] ||= 0
