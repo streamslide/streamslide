@@ -3,7 +3,6 @@ require 'sidekiq/web'
 Launchvn::Application.routes.draw do
   mount Sidekiq::Web, at: '/sidekiq'
 
-  #match '/auth/:provider/callback' => 'authentications#create'
   devise_scope :user do
     get '/auth/:provider' => 'users/omniauth_callbacks#passthru'
   end
@@ -11,6 +10,8 @@ Launchvn::Application.routes.draw do
   match '/new' => 'upload#index'
   post '/upload/status'
   get '/upload/job'
+
+  get '/slide/:slide_id' => 'slide#index'
 
   root :to => "home#index"
 end

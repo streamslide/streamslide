@@ -17,7 +17,7 @@ class UploadWorker
   end
 
   def size
-    @size ||= is_thumb ? 210 : 1024
+    @size ||= @is_thumb ? 210 : 1024
   end
 
   def image_type_name
@@ -41,7 +41,7 @@ class UploadWorker
   def convert_pdf_to_images
     @image_files =  @pdf.convert_pages_to_images(@start_page,
                                                  @end_page,
-                                                 output_width: @size)
+                                                 output_width: size)
   end
 
   def upload_image_file image_file, key, &block

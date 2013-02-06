@@ -17,7 +17,7 @@ describe UploadWorker do
 
     it "convert pdf to images" do
       pdf = MiniTest::Mock.new
-      pdf.expect :convert_pages_to_images, nil, [1, 20, { :output_width => nil }]
+      pdf.expect :convert_pages_to_images, nil, [1, 20, { :output_width => 1024 }]
 
       worker.instance_variable_set(:@start_page, 1)
       worker.instance_variable_set(:@end_page, 20)
