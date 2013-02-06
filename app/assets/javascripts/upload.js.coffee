@@ -20,10 +20,11 @@ jQuery ->
       callback = () -> get_job_status(job_id)
 
       switch data.status
-        when "complete" then console.log "Upload successfully"
+        when "complete" then window.location.pathname = '/'
         when "processing" then setTimeout callback, 2000
 
   uploader.on 'ajax:complete', (xhr, status) ->
     $("#processing_bar").addClass("bar")
     job_id = $.parseJSON(status.responseText).job_id
+
     get_job_status(job_id)

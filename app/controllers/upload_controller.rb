@@ -8,7 +8,7 @@ class UploadController < ApplicationController
 
   def status
     url_path = params[:url]
-    job_id = SlideWorker.perform_async(url_path)
+    job_id = SlideWorker.perform_async(current_user.id, url_path)
 
     render :json => { :job_id => job_id }
   end

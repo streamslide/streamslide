@@ -25,10 +25,12 @@ describe SlideWorker do
 
       Downloader.stub :new, downloader do
         worker.stub :dispatch_job_to_uploader, nil do
-          worker.stub :update_job_in_redis, nil do
-            downloader.expect(:store, nil, ['/tmp/file_id.pdf'])
-            worker.perform(url)
-            downloader.verify
+          worker.stub :store_slide_info, nil do
+            worker.stub :update_job_in_redis, nil do
+              downloader.expect(:store, nil, ['/tmp/file_id.pdf'])
+              worker.perform(nil, url)
+              downloader.verify
+            end
           end
         end
       end
