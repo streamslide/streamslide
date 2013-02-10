@@ -1,11 +1,37 @@
-<%= s3_uploader_form post: "upload/status", as: "file", id: "myS3Uploader" do %>
-  <%= file_field_tag :file, multiple: true %>
-<% end %>
+<div class="primary-info">
+  <p><h2>Upload a PDF</h2></p>
+  <%= s3_uploader_form post: "upload/status", as: "file", id: "myS3Uploader" do %>
+    <%= file_field_tag :file, multiple: true %>
+  <% end %>
 
-<script id="template-upload" type="text/x-tmpl">
+  <p><h2>Watch the Progress</h2></p>
   <div class="upload">
-    {%=o.name%}
     <div class="progress"><div class="bar" style="width: 0%"></div></div>
     <div class="progress"><div id="processing_bar" style="width: 0%"></div></div>
   </div>
-</script>
+</div>
+
+<div class="secondar-info">
+  <h2>Edit the details</h1>
+  <form action="#" method="post">
+    <p>
+      <label for="slide_name">Name</label>
+      <div class="countdown-wrapper">
+        <input class="text" id="slide_name" maxlength=255 name="slide[name]" size=255 type="text">
+        <span class="countdown"></span>
+      </div>
+    </p>
+
+    <p>
+      <label for="slide_description">Description</label>
+      <div class="countdown-wrapper">
+        <input class="text" id="slide_description" maxlength=255 name="slide[description]" size=255 type="text">
+        <span class="countdown"></span>
+      </div>
+    </p>
+
+    <p class="submit">
+      <span class="btn primary cancel">Upload PDF to save</span>
+    </p>
+  </form>
+</div>

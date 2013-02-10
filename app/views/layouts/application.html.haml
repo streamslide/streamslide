@@ -15,11 +15,12 @@
       %div.navbar-inner
         %div.container
           = render 'layouts/navigation'
+
     #main{:role => "main"}
       .container
         .content
           .row
-            .span12
+            .span12.container
               = render 'layouts/messages'
               = yield
           %footer

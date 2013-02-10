@@ -5,6 +5,19 @@ $iconWhiteSpritePath: asset-url('glyphicons-halflings-white.png', image);
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
 
+.navbar-fixed-top .container, .container {
+  width: 1024px;
+}
+
+.content {
+  background-color: #fff;
+  border-radius: 0px;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+}
+
+/*
+ * For navbar only
+ */
 .nav.actions {
   float: right;
 }
@@ -20,6 +33,10 @@ body { padding-top: 60px; }
 }
 
 .navbar-inner form input {
+  margin: 0px;
+}
+
+.navbar-inner form input {
   border-radius: 2px;
 }
 
@@ -28,3 +45,20 @@ body { padding-top: 60px; }
   width: 30px;
   height: 30px;
 }
+
+.navbar .dropdown .dropdown-toggle {
+  padding: 5px;
+}
+
+// remove arrow
+.navbar .nav > li > .dropdown-menu::before,
+.navbar .nav > li > .dropdown-menu::after {
+  border: none;
+  content: none;
+}
+
+// hover for dropdown menu
+ul.nav li.dropdown:hover ul.dropdown-menu {
+  display: block;
+}
+
