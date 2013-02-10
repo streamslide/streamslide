@@ -12,8 +12,8 @@
     = yield(:head)
   %body
     %header.navbar.navbar-fixed-top
-      %nav.navbar-inner
-        .container
+      %div.navbar-inner
+        %div.container
           = render 'layouts/navigation'
     #main{:role => "main"}
       .container
@@ -24,5 +24,5 @@
               = yield
           %footer
 
-    
+
 = javascript_include_tag "application"
