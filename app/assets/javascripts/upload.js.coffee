@@ -24,6 +24,7 @@ jQuery ->
         when "processing" then setTimeout callback, 2000
 
   uploader.on 'ajax:complete', (xhr, status) ->
+    $("#processing_bar").addClass "bar"
     job_id = $.parseJSON(status.responseText).job_id
 
     get_job_status(job_id)
