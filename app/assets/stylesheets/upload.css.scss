@@ -1,0 +1,50 @@
+.primary-info {
+  float: left;
+  width: 460px;
+  margin-top: 20px;
+}
+
+.secondary-info {
+  float: right;
+  width: 460px;
+  margin-top: 20px;
+}
+
+.slide h2 {
+  font-size: 30px;
+  color: #333;
+}
+
+.progress {
+  height: 28px;
+  -webkit-border-radius: 17px;
+  -moz-border-radius: 17px;
+  -ms-border-radius: 17px;
+  -o-border-radius: 17px;
+  border-radius: 17px;
+  width: 460px;
+}
+
+input[type='text'], textarea {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  width: 430px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+input[type='file'] {
+  border: transparent;
+  -moz-transform: translate(300px, 0px) scale(4);
+  z-index: 2;
+  direction: ltr;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+form#myS3Uploader {
+  position: absolute;
+}
