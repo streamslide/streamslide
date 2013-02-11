@@ -5,15 +5,48 @@ $iconWhiteSpritePath: asset-url('glyphicons-halflings-white.png', image);
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
 
-.btn.primary {
+.btn {
   padding: 10px 15px;
 }
 
-.btn.primary.submit {
+.btn.primary {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #5bb75b;
+  *background-color: #51a351;
+  background-image: -moz-linear-gradient(top, #62c462, #51a351);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+  background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+  background-image: -o-linear-gradient(top, #62c462, #51a351);
+  background-image: linear-gradient(to bottom, #62c462, #51a351);
+  background-repeat: repeat-x;
+  border-color: #51a351 #51a351 #387038;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.btn.primary:hover,
+.btn.primary:focus,
+.btn.primary:active,
+.btn.primary.active,
+.btn.primary.disabled,
+.btn.primary[disabled] {
+  color: #ffffff;
+  background-color: #51a351;
+  *background-color: #499249;
+}
+
+.btn.primary:active,
+.btn.primary.active {
+  background-color: #408140 \9;
+}
+
+.btn.submit {
   width: 168px;
 }
 
-input.btn.primary.submit {
+input.btn.submit {
   width: 200px;
 }
 
