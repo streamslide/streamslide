@@ -1,17 +1,31 @@
-<h2>Sign in</h2>
+<div class="box-center">
+  <div class="signin-wrapper">
+    <h2>Sign in using</h2>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+    <ul id="social-login" class="signup">
+      <li class="facebook">
+      <%= link_to "Sign up with your Facebook account",
+          user_omniauth_authorize_path(:facebook) %>
+      </li>
+    </ul>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+    <p> or your account </p>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
+      <%= f.email_field :email, :placeholder => "Email" %>
+      <%= f.password_field :password, :placeholder => "Password" %>
 
-<%= render :partial => "devise/shared/links" %>
+      <% if devise_mapping.rememberable? -%>
+        <%= f.hidden_field :remember_me, :value => 1 %>
+      <% end -%>
+
+      <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+        <%= link_to "Forgot your password?", new_password_path(resource_name),
+            :class => "btn primary submit"  %>
+      <% end -%>
+      <%= f.submit "Sign in", :class => "btn primary submit" %>
+    <% end %>
+  </div>
+</div>

@@ -5,8 +5,39 @@ $iconWhiteSpritePath: asset-url('glyphicons-halflings-white.png', image);
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
 
+.btn.primary {
+  padding: 10px 15px;
+}
+
+.btn.primary.submit {
+  width: 168px;
+}
+
+input.btn.primary.submit {
+  width: 200px;
+}
+
 .navbar-fixed-top .container, .container {
   width: 1024px;
+}
+
+.box-center {
+  display: -webkit-box;
+  display: box;
+  display: -moz-box;
+
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  box-pack: center;
+
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  box-align: center;
+}
+
+.signin-wrapper {
+  text-align: center !important;
+  width: 460px;
 }
 
 .content {
@@ -14,6 +45,51 @@ body { padding-top: 60px; }
   border-radius: 0px;
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
 }
+
+input[type='text'], input[type='email'], input[type='password'], textarea {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  padding: 10px 15px;
+  width: 430px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+/*
+ * social login facebook
+ */
+#social-login li {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+#social-login li.facebook {
+  background: url("/assets/facebook-login-white.png") 8px 4px no-repeat,-webkit-linear-gradient(top, #3b5998, #2a406f);
+  background: url("/assets/facebook-login-white.png") 8px 4px no-repeat,-moz-linear-gradient(top, #3b5998, #2a406f);
+  background: url("/assets/facebook-login-white.png") 8px 4px no-repeat,-o-linear-gradient(top, #3b5998, #2a406f);
+  background: url("/assets/facebook-login-white.png") 8px 4px no-repeat,linear-gradient(top, #3b5998,#2a406f);
+  background-color: #3b5998 !important;
+  border: 1px solid #1b3161;
+  font-size: 16px;
+  padding: 10px 15px;
+}
+
+#social-login li.facebook:hover {
+  cursor: pointer;
+}
+
+#social-login li.facebook a {
+  color: #fff;
+  margin-left: 30px;
+  text-decoration: none;
+}
+
 
 /*
  * For navbar only

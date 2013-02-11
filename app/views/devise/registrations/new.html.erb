@@ -1,18 +1,26 @@
-<h2>Sign up</h2>
+<div class="box-center">
+  <div class="signin-wrapper">
+    <h2>Getting started with Launchvn</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+    <ul id="social-login" class="signup">
+      <li class="facebook">
+      <%= link_to "Sign up with your Facebook account",
+          user_omniauth_authorize_path(:facebook) %>
+      </li>
+    </ul>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+    <p> or create a new account</p>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <p><%= devise_error_messages! %></p>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+      <%= f.email_field :email, :placeholder => "Email" %>
+      <%= f.password_field :password, :placeholder => "Password" %>
+      <%= f.password_field :password_confirmation, :placeholder => "Password confirm" %>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
+      <p>Already have an account? <%= link_to "Sign in now", session_path(resource_name) %></p>
 
-<%= render partial: "devise/shared/links" %>
+      <%= f.submit "Sign up", :class => "btn primary submit" %>
+    <% end %>
+  </div>
+</div>
