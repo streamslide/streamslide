@@ -1,6 +1,8 @@
+require 'securerandom'
+
 class Slide < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :filename, :pages, :s3_key, :user_id
+  attr_accessible :filename, :pages, :s3_key, :user_id, :name, :description
 
   def page_url index
     "#{s3_prefix_url}/slide/#{s3_key}/slide_#{index}.jpg"
@@ -11,7 +13,11 @@ class Slide < ActiveRecord::Base
   end
 
   def pdf_url
-    "#{s3_prefix_url}/upload/#{s3_key}/#{@filename}"
+    "#{s3_prefix_url}/slide/#{s3_key}/#{filename}"
+  end
+
+  def s3_upload_key
+    "slide/#{s3_key}/$filename}"
   end
 
   private

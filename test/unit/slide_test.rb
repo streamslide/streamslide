@@ -1,7 +1,9 @@
 require 'test_helper'
 
-class SlideTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+describe Slide do
+  let(:slide) { Slide.new }
+
+  it "test initialize" do
+    assert slide
+  end
 end

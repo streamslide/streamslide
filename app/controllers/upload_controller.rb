@@ -1,9 +1,13 @@
 class UploadController < ApplicationController
+  include UUID
+
   prepend_before_filter :current_user, :only => :exhibit
   before_filter :authenticate_user!
 
   def index
     @current_user = current_user
+    @slide = Slide.new
+    @slide.s3_key = uuid
   end
 
   def status
