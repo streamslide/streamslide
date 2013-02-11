@@ -3,13 +3,13 @@
     <h2>Sign in using</h2>
 
     <ul id="social-login" class="signup">
-      <li class="facebook">
+      <li class="facebook btn">
       <%= link_to "Sign up with your Facebook account",
           user_omniauth_authorize_path(:facebook) %>
       </li>
     </ul>
 
-    <p> or your account </p>
+    <h3> or your account </h3>
 
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>

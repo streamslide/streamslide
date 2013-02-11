@@ -10,6 +10,7 @@
     = stylesheet_link_tag    "application", :media => "all"
     = csrf_meta_tags
     = yield(:head)
+
   %body
     %header.navbar.navbar-fixed-top
       %div.navbar-inner
@@ -23,7 +24,8 @@
             .span12.container
               = render 'layouts/messages'
               = yield
-          %footer
 
+    %footer.container
+      = render 'layouts/footer'
 
 = javascript_include_tag "application"

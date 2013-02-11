@@ -10,11 +10,6 @@
   margin-top: 20px;
 }
 
-.slide h2 {
-  font-size: 30px;
-  color: #333;
-}
-
 .progress {
   height: 28px;
   -webkit-border-radius: 17px;
@@ -37,4 +32,8 @@ input[type='file'] {
 
 form#myS3Uploader {
   position: absolute;
+}
+
+.data-context {
+  margin-top: 40px;
 }
