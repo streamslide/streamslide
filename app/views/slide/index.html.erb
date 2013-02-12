@@ -1,1 +1,8 @@
-<%= image_tag @slide.thumbnail_url(1) %>
+<div class="slide">
+  <div class="main">
+  </div>
+
+  <div class="extra">
+    <%= image_tag @slide.author.avatar_url, :class => :author_avatar %>
+  </div>
+</div>

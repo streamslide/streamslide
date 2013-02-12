@@ -111,6 +111,11 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
 /*
  * social login facebook
  */
+#social-login {
+  padding: 0px;
+  margin: 0px;
+}
+
 #social-login li {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;

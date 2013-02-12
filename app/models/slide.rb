@@ -4,6 +4,10 @@ class Slide < ActiveRecord::Base
   belongs_to :user
   attr_accessible :filename, :pages, :s3_key, :user_id, :name, :description
 
+  def author
+    @author ||= user
+  end
+
   def page_url index
     "#{s3_prefix_url}/slide/#{s3_key}/slide_#{index}.jpg"
   end
