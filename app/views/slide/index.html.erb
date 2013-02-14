@@ -1,8 +1,26 @@
 <div class="slide">
   <div class="main">
+    <div class=""></div>
   </div>
 
   <div class="extra">
-    <%= image_tag @slide.author.avatar_url, :class => :author_avatar %>
+
+    <div class="author">
+      <%= image_tag @slide.author.avatar_url, :class => :author_avatar %>
+      <div class="author_name"><%= @slide.author.name %></div>
+      <div><%= @slide.author.slides.count %> slides</div>
+    </div>
+
+    <div class="stats">
+      <div class="view_count"><%= @slide.view_count %></div>
+    </div>
+
+    <div class="share">Share
+      <div class="download">
+        <%= link_to "Download PDF", @slide.pdf_url %>
+      </div>
+    </div>
+
   </div>
+
 </div>

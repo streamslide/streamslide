@@ -2,7 +2,8 @@ require 'securerandom'
 
 class Slide < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :filename, :pages, :s3_key, :user_id, :name, :description
+  attr_accessible :filename, :pages, :s3_key, :user_id,
+                  :name, :description, :view_count
 
   def author
     @author ||= user

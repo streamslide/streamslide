@@ -11,17 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130212035009) do
+ActiveRecord::Schema.define(:version => 20130212061155) do
 
   create_table "slides", :force => true do |t|
     t.integer  "user_id"
     t.integer  "pages"
     t.string   "s3_key"
     t.string   "filename"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.text     "name"
     t.text     "description"
+    t.integer  "view_count",  :default => 0
   end
 
   create_table "users", :force => true do |t|
