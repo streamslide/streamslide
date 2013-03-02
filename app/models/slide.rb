@@ -9,16 +9,20 @@ class Slide < ActiveRecord::Base
     @author ||= user
   end
 
+  def slide_url_prefix
+    "#{s3_prefix_url}/slide/#{s3_key}"
+  end
+
   def page_url index
-    "#{s3_prefix_url}/slide/#{s3_key}/slide_#{index}.jpg"
+    "#{slide_url_prefix}/slide_#{index}.jpg"
   end
 
   def thumbnail_url index
-    "#{s3_prefix_url}/slide/#{s3_key}/thumb_#{index}.jpg"
+    "#{slide_url_prefix}/thumb_#{index}.jpg"
   end
 
   def pdf_url
-    "#{s3_prefix_url}/slide/#{s3_key}/#{filename}"
+    "#{slide_url_prefix}/#{filename}"
   end
 
   def s3_upload_key

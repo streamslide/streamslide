@@ -1,3 +1,59 @@
-// Place all the styles related to the slide controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "mixins";
+
+$height: 600px;
+
+.main-player {
+  width: 600px;
+  height: $height;
+  float: left;
+  margin-right: 50px;
+}
+
+.main-player .primary-color {
+  background: #323232;
+  @include background-image-gradient(#5e5b5c, #323232);
+}
+
+.main-player .header {
+  @include border-radius(5px 5px 0px 0px);
+  height: 30px;
+}
+
+.main-player .footer {
+  @include border-radius(0px 0px 5px 5px);
+  height: 35px;
+}
+
+.control-btn {
+  float: left;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.prev {
+  background: url("/assets/prev.png") 10px 10px no-repeat;
+}
+
+.next {
+  background: url("/assets/next.png") 10px 10px no-repeat;
+}
+
+.player-progress-container {
+  float: left;
+  height: 10px;
+  width: 500px;
+  @include border-radius(10px);
+  margin: 12px 0px;
+  background: #000000;
+  @include background-image-gradient(#000000, #222222);
+  @include box-shadow(rgba(255, 255, 255, 0.12) 1px 0 rgba(0,0,0,0.12) 0 -1px 0);
+}
+
+.player-progress {
+  width: 5%;
+  height: 10px;
+  background: #38ad75;
+  @include border-radius(10px);
+  @include background-image-gradient(#38ad75, #0e6355);
+}

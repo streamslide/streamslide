@@ -2,11 +2,31 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 #= require image_album
+$(document).ready ()->
+  class SlidePlayer
+    constructor: (@slidePrefixUrl, @totalPage) ->
+      @currentPage = 1
+      @currentSlide = $("#current-slide")
+      @progress = $(".player-progress")
 
-#images = []
-#for i in [1..150]
-  #url = 'https://s3.amazonaws.com/skunkworks-test/slide/20130210T0605Z_6d8931ac4992ea65ceab6ed909b87c1e/slide_' + i + '.jpg'
-  #images.push(url)
+    gotoPage: (index) ->
+      if index > 1 and index < @totalPage
+        percent = Math.round(index  * 100 / @totalPage)
+        @progress.css("width", "#{percent}%")
+        @currentPage = index
+        @currentSlide.attr("src", "#{@slidePrefixUrl}/slide_#{index}.jpg")
 
-#album = new ImageAlbum(images)
-#album.pre_load(1)
+    prev: () ->
+      @gotoPage(@currentPage - 1)
+
+    next: () ->
+      @gotoPage(@currentPage + 1)
+
+  player = new SlidePlayer(slidePrefixUrl, totalPage)
+  player.gotoPage(1)
+
+  $(".prev").click (e) ->
+    player.prev()
+
+  $(".next").click (e) ->
+    player.next()
