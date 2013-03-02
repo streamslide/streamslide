@@ -21,7 +21,7 @@ $(document).ready ()->
         @loadImage(i)
 
     gotoPage: (index) ->
-      if index > 1 and index < @totalPage
+      if index >= 1 and index <= @totalPage
         if @images_loaded[index]
           percent = Math.round(index  * 100 / @totalPage)
           @progress.css("width", "#{percent}%")
