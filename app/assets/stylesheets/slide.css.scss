@@ -1,10 +1,9 @@
 @import "mixins";
 
-$height: 600px;
+$width: 708px;
 
 .main-player {
-  width: 600px;
-  height: $height;
+  width:  $width;
   float: left;
   margin-right: 50px;
 }
@@ -22,6 +21,10 @@ $height: 600px;
 .main-player .footer {
   @include border-radius(0px 0px 5px 5px);
   height: 35px;
+}
+
+#current-slide {
+  width: $width;
 }
 
 .control-btn {
