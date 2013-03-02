@@ -7,7 +7,7 @@
     %title= content_for?(:title) ? yield(:title) : "Launchvn"
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
-    = stylesheet_link_tag    "application", :media => "all"
+    = stylesheet_link_tag "application", :media => "all"
     = csrf_meta_tags
     = yield(:head)
 
@@ -29,3 +29,4 @@
       = render 'layouts/footer'
 
     = javascript_include_tag "application"
+    = yield(:javascript)
