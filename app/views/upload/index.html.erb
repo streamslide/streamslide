@@ -12,11 +12,11 @@
     <%= form_for(:slide, :url => "#", :method => :put)  do |f| %>
       <%= f.hidden_field :s3_key, :value => @slide.s3_key %>
       <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, :class => 'filename' %>
 
       <%= f.label :description %>
       <%= f.text_field :description %>
-      <%= f.submit "Upload PDF to save", :class => "btn primary" %>
+      <%= f.submit "Upload PDF to save", :class => "btn primary disable" %>
     <% end %>
   </div>
 </div>

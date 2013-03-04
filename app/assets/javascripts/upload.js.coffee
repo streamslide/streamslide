@@ -20,8 +20,10 @@ jQuery ->
       callback = () -> get_job_status(job_id)
 
       switch data.status
-        when "complete" then window.location.pathname = '/slide/' + data.slide_id
-        when "processing" then setTimeout callback, 2000
+        when "complete"
+          $(".btn.disable").toggleClass("disable")
+        when "processing"
+          setTimeout callback, 2000
 
   uploader.on 'ajax:complete', (xhr, status) ->
     $("#processing_bar").addClass "bar"
