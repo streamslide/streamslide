@@ -9,4 +9,10 @@ class SlideController < ApplicationController
     end
   end
 
+  def edit
+    @slide = Slide.find_by_s3_key(params[:slide][:s3_key])
+    if @slide.update_attributes(params[:slide])
+      redirect_to "/slide/#{@slide.id}"
+    end
+  end
 end

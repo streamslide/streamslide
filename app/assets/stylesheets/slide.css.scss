@@ -42,6 +42,14 @@ $width: 708px;
   background: url("/assets/next.png") 10px 10px no-repeat;
 }
 
+#fullscreen-btn {
+  float: right;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background: url("/assets/fullscreen-btn.png") 5px 6px no-repeat;
+}
+
 .player-progress-container {
   float: left;
   height: 10px;

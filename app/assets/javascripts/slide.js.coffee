@@ -52,3 +52,16 @@ $(document).ready ()->
       when 39 # right key
         player.next()
 
+
+  launchFullscreen = (element) ->
+    if element.requestFullScreen
+      element.requestFullScreen()
+    else if element.mozRequestFullScreen
+      element.mozRequestFullScreen()
+    else if element.webkitRequestFullScreen
+      element.webkitRequestFullScreen()
+
+
+  $("#fullscreen-btn").click (e) ->
+    launchFullscreen($("#current-slide")[0])
+

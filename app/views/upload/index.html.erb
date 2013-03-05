@@ -9,7 +9,7 @@
 
   <div class="secondary-info">
     <h2>Edit the details</h1>
-    <%= form_for(:slide, :url => "#", :method => :put)  do |f| %>
+    <%= form_for(:slide, :url => "/slide/edit", :method => :put)  do |f| %>
       <%= f.hidden_field :s3_key, :value => @slide.s3_key %>
       <%= f.label :name %>
       <%= f.text_field :name, :class => 'filename' %>
