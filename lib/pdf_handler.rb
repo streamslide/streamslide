@@ -51,7 +51,7 @@ class PDFHandler
   def get_page_count
     command = ["gs", "-dNODISPLAY", "-q",
         "-sFile=#{Shellwords.shellescape(@filepath)}",
-        File.expand_path('../../lib/pdf_info.ps', __FILE__)]
+        Shellwords.shellescape(File.expand_path('../../lib/pdf_info.ps', __FILE__))]
 
     result = `#{command.join(' ')}`
     result.gsub(WarningRegex, '').to_i
