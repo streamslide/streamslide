@@ -1,0 +1,10 @@
+<div class="slide-thumb">
+  <%= link_to({controller: 'slide', action: 'index', slide_id: slide.id}, class: "slide-preview") do %>
+     <%= image_tag slide.thumbnail_url(1), class: 'page-thumbnail' %>
+  <% end %>
+
+  <div class="slide-info">
+    <h3 class="slide-name"><%= slide.name %></h3>
+    <p class="slide-date"><%= slide.created_at.strftime("%b %d %Y") %> by <%= link_to slide.user.name, slide.user %></p>
+  </div>
+</div>

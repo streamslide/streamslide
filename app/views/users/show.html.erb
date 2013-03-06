@@ -1,0 +1,19 @@
+<div class="user-deck">
+  <div class="main-container">
+    <h1>Talks by <%= @user.name %></h1>
+    <p></p>
+    <% @user.slides.each do |slide| %>
+      <%= render partial: "slide/slide", locals: {slide: slide} %>
+    <% end %>
+    <% (9-@user.slides.count).times do %>
+      <%= render partial: "slide/empty_slide" %>
+    <% end %>
+  </div>
+
+  <div class="extras">
+    <h1>The Speaker</h1>
+    <p></p>
+    <%= render @user %>
+  </div>
+
+</div>

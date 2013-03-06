@@ -1,0 +1,87 @@
+@import "mixins";
+
+$width: 710px;
+$extras-width: 270px;
+$slide-thumb-width: 210px;
+$slide-thumb-height: 157px;
+
+.main-container {
+  width:  $width;
+  float: left;
+}
+
+.extras {
+  width: $extras-width;
+  float: right;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+
+// slide-thumb
+.slide-thumb {
+  float: left;
+  margin: 0 38px 20px 0;
+  width: $slide-thumb-width;
+  font-size: 15px;
+}
+
+.slide-thumb:nth-child(3n+2) {
+  margin-right: 0;
+}
+
+.slide-thumb a {
+  position: relative;
+}
+
+a.slide-preview {
+  display: block;
+  width: $slide-thumb-width;
+  height: $slide-thumb-height;
+  @include border-radius(4px);
+  @include box-shadow2(rgba(0,0,0,0.2) 0 0 0 1px, rgba(0, 0, 0,0.3) 0 2px 5px);
+  margin:0 0 10px;
+}
+
+a.slide-preview img {
+  float: left;
+  @include border-radius(4px);
+  width: $slide-thumb-width;
+  height: $slide-thumb-height;
+}
+
+img.page-thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+// slide meta
+.slide-info h3 {
+  font-family: 'Open Sans', "Lucida Grande", Tahoma, Verdana, sans-serif;
+  font-weight: 300;
+  letter-spacing: 0;
+  font-size: 15px !important;
+  line-height: 1.4;
+  margin: 0 0 10px;
+  word-wrap: break-word;
+}
+
+.slide-info p.slide-date {
+  color: #777 !important;
+  margin: -8px 0 10px;
+}
+
+.slide-thumb-empty {
+  background: rgba(0,0,0,0.05);
+  @include border-radius(4px);
+  @include box-shadow2(rgba(0,0,0,0.2) 0 -1px 0,rgba(255,255,255,0.8) 0 1px 0);
+
+  margin-bottom: 80px;
+  width: $slide-thumb-width;
+  height: $slide-thumb-height;
+}
+

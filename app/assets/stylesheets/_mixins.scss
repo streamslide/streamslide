@@ -20,3 +20,9 @@
   -moz-box-shadow: $info;
   box-shadow: $info;
 }
+
+@mixin box-shadow2($info1, $info2) {
+  -webkit-box-shadow: $info1, $info2;
+  -moz-box-shadow: $info1, $info2;
+  box-shadow: $info1, $info2;
+}
