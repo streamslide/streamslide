@@ -1,5 +1,5 @@
 <div class="slide-thumb" slide-page-count=<%= slide.pages %> loaded-page-count='1' >
-  <%= link_to({controller: 'slide', action: 'index', slide_id: slide.id}, class: "slide-preview") do %>
+  <%= link_to(slide_index_path(:username => slide.user.username, :slug => slide.slug), class: "slide-preview") do %>
     <div class="preview-progress-container" style="visibility: hidden">
       <div class="preview-progress" style="width: <%= 100 / slide.pages %>%;"></div>
     </div>
@@ -8,6 +8,6 @@
 
   <div class="slide-info">
     <h3 class="slide-name"><%= slide.name %></h3>
-    <p class="slide-date"><%= slide.created_at.strftime("%b %d %Y") %> by <%= link_to slide.user.name, slide.user %></p>
+    <p class="slide-date"><%= slide.created_at.strftime("%b %d %Y") %> by <%= link_to slide.user.username, slide.user %></p>
   </div>
 </div>

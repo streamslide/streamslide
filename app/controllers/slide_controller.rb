@@ -2,9 +2,10 @@ class SlideController < ApplicationController
 
   def index
     begin
-      @slide = Slide.find(params[:slide_id])
+      @user = User.find_by_username(params[:username])
+      @slide = Slide.where(:user_id => @user.id, :slug => params[:slug]).first
       @slide.increment! :view_count
-    rescue ActiveRecord::RecordNotFound
+    rescue
       redirect_to root_url
     end
   end

@@ -24,6 +24,7 @@ gem 'happening', '~>0.2.5'
 
 group :development do
   gem 'sqlite3'
+  gem 'database_cleaner'
   gem 'debugger', '~> 1.1.3'
   gem 'pry-rails', '0.1.6'
   gem 'pry', '0.9.9.4'

@@ -16,8 +16,8 @@ Launchvn::Application.routes.draw do
   post '/upload/status'
   get '/upload/job'
 
-  get '/slide/:slide_id' => 'slide#index'
   put '/slide/edit' => 'slide#edit'
+  get '/:username/:slug' => 'slide#index', :as => "slide_index"
 
   root :to => "home#index"
 end

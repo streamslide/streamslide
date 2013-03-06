@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130212061155) do
+ActiveRecord::Schema.define(:version => 20130306161931) do
 
   create_table "slides", :force => true do |t|
     t.integer  "user_id"
@@ -23,7 +23,10 @@ ActiveRecord::Schema.define(:version => 20130212061155) do
     t.text     "name"
     t.text     "description"
     t.integer  "view_count",  :default => 0
+    t.string   "slug"
   end
+
+  add_index "slides", ["slug"], :name => "index_slides_on_slug"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false

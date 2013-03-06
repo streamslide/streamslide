@@ -3,7 +3,7 @@ require 'securerandom'
 class Slide < ActiveRecord::Base
   belongs_to :user
   attr_accessible :filename, :pages, :s3_key, :user_id,
-                  :name, :description, :view_count
+                  :name, :description, :view_count, :slug
 
   def author
     @author ||= user
@@ -33,5 +33,13 @@ class Slide < ActiveRecord::Base
 
   def s3_prefix_url
     "https://s3.amazonaws.com/#{ENV["AWS_S3_BUCKET_NAME"]}"
+  end
+
+  def update_slug
+    slug = name.downcase.gsub(/ /, '-')
+    if Slide.where(:slug => slug).count > 0 then
+      slug = "#{slug}-#{Time.now.to_i}"
+    end
+    update_attributes(:slug => slug)
   end
 end

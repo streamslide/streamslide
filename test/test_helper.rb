@@ -24,3 +24,20 @@ module FileComparator
     Digest::SHA2.hexdigest(File.read(file))
   end
 end
+
+
+require 'database_cleaner'
+DatabaseCleaner.strategy = :transaction
+class MiniTest::Spec
+  before :suite do
+    DatabaseCleaner.start
+  end
+
+  after :suite do
+    DatabaseCleaner.clean
+  end
+end
+
+# turn off SQL logging
+ActiveRecord::Base.logger = nil
+
