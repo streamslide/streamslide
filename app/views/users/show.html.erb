@@ -15,5 +15,8 @@
     <p></p>
     <%= render @user %>
   </div>
-
 </div>
+
+<% content_for :javascript do %>
+  <%= javascript_include_tag 'user' %>
+<% end %>

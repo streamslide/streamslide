@@ -1,6 +1,9 @@
-<div class="slide-thumb">
+<div class="slide-thumb" slide-page-count=<%= slide.pages %> loaded-page-count='1' >
   <%= link_to({controller: 'slide', action: 'index', slide_id: slide.id}, class: "slide-preview") do %>
-     <%= image_tag slide.thumbnail_url(1), class: 'page-thumbnail' %>
+    <div class="preview-progress-container" style="visibility: hidden">
+      <div class="preview-progress" style="width: <%= 100 / slide.pages %>%;"></div>
+    </div>
+    <%= image_tag slide.thumbnail_url(1), class: 'page-thumbnail 1' %>
   <% end %>
 
   <div class="slide-info">

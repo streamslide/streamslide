@@ -59,6 +59,29 @@ img.page-thumbnail {
   z-index: 2;
 }
 
+// preview progress bar
+.preview-progress-container {
+  float: left;
+  height: 6px;
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  z-index: 3;
+  padding: 1px;
+  @include border-radius(10px);
+  background: #000000;
+  @include background-image-gradient(#000000, #222222);
+  @include box-shadow(rgba(255, 255, 255, 0.12) 1px 0 rgba(0,0,0,0.12) 0 -1px 0);
+}
+
+.preview-progress {
+  height: 6px;
+  background: #38ad75;
+  @include border-radius(10px);
+  @include background-image-gradient(#38ad75, #0e6355);
+}
+
 // slide meta
 .slide-info h3 {
   font-family: 'Open Sans', "Lucida Grande", Tahoma, Verdana, sans-serif;
