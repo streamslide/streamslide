@@ -18,5 +18,11 @@ describe Slide do
       new_slide.send(:update_slug)
       assert new_slide.slug.include? "new-slide-"
     end
+
+    it "generate slug for slide with name is nil" do
+      slide = Slide.create(:user_id => 1)
+      slide.send(:update_slug)
+      assert slide.slug.size > 0
+    end
   end
 end

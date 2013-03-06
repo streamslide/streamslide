@@ -36,9 +36,10 @@ class Slide < ActiveRecord::Base
   end
 
   def update_slug
-    slug = name.downcase.gsub(/ /, '-')
-    if Slide.where(:slug => slug).count > 0 then
-      slug = "#{slug}-#{Time.now.to_i}"
+    slide_name = if name.nil? then '' else name end
+    slug = slide_name.downcase.gsub(/ /, '-')
+    if Slide.where(:slug => slug).count > 0 or slug.size == 0 then
+      slug = if slug.size == 0 then "#{Time.now.to_i}" else "#{slug}-#{Time.now.to_i}" end
     end
     update_attributes(:slug => slug)
   end
