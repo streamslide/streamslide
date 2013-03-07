@@ -1,0 +1,1 @@
+$('#unfollow-<%= @following_user_id %>').replaceWith("<%=j link_to "Follow", create_follow_path(user_id: current_user.id, following_user_id: @following_user_id), method: :post, remote: true, id: "follow-#{@following_user_id}", class: "btn btn-small btn-block", style: "text-decoration: none" %>");

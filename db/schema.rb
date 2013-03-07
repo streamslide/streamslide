@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130306161931) do
+ActiveRecord::Schema.define(:version => 20130307055003) do
+
+  create_table "follows", :force => true do |t|
+    t.integer  "following_user_id"
+    t.integer  "user_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "follows", ["following_user_id"], :name => "index_follows_on_following_user_id"
+  add_index "follows", ["user_id"], :name => "index_follows_on_user_id"
 
   create_table "slides", :force => true do |t|
     t.integer  "user_id"
@@ -26,21 +36,19 @@ ActiveRecord::Schema.define(:version => 20130306161931) do
     t.string   "slug"
   end
 
-  add_index "slides", ["slug"], :name => "index_slides_on_slug"
-
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                            :null => false
-    t.datetime "updated_at",                                            :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "image_url"
     t.string   "provider"
     t.string   "uid"

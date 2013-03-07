@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :authentication_keys => [:login]
 
   has_many :slides, :dependent => :destroy
+  has_many :follows, :dependent => :destroy
 
   attr_accessor :login
   attr_accessible :email, :name, :image_url, :username,
@@ -63,6 +64,10 @@ class User < ActiveRecord::Base
     else
       image_url
     end
+  end
+
+  def followed?(user_id)
+    !Follow.where("user_id = ? AND following_user_id = ?", self.id, user_id).empty?
   end
 
 end

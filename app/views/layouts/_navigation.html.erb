@@ -9,7 +9,7 @@
 <div class="nav-collapse nav-inverse">
   <ul class="nav actions">
   <% if user_signed_in? %>
-    <li><%= link_to "Browse", '/slide/21' %></li>
+    <li><%= link_to "Browse", browse_path %></li>
     <li><%= link_to "Upload", '/new' %></li>
     <li class="dropdown">
       <div class="dropdown-toggle" data-toggle="dropdown">
@@ -18,15 +18,11 @@
         <span class="caret"></span>
       </div>
       <ul class="dropdown-menu pull-right">
-        <li>
-          <%= link_to "My Decks", current_user %>
-        </li>
-        <li>
-          <%= link_to "Settings", edit_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-        </li>
+        <li><%= link_to "My Decks", current_user %></li>
+        <li><%= link_to "Settings", edit_user_registration_path %></li>
+        <li><%= link_to "Following", following_path %></li>
+        <hr style="margin:0;">
+        <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
       </ul>
     </li>
   <% else %>
