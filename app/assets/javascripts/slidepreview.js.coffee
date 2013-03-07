@@ -3,7 +3,7 @@ jQuery ->
   currentpage = 1
 
   gotopage = (preview, pagenum) ->
-    if currentpage == pagenum && pagenum < 1
+    if currentpage == pagenum || pagenum < 1
       return
     $(preview).find('.'+currentpage).hide()
     $(preview).find('.'+pagenum).show()
