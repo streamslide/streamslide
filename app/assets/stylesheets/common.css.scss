@@ -32,6 +32,10 @@ h1 {
   margin-right: 0;
 }
 
+.slide-thumb:nth-child(3n) {
+  clear: left;
+}
+
 .slide-thumb a {
   position: relative;
 }
