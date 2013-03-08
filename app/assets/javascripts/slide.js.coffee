@@ -29,6 +29,11 @@ $(document).ready ()->
           @currentSlide.attr("src", "#{@slidePrefixUrl}/slide_#{index}.jpg")
           for i in [index + 1..index + PRELOAD_IMAGE_COUNT]
             @loadImage(i)
+    
+    loadedImg: (index) ->
+      if @images_loaded?
+        return @images_loaded[index]
+      return false
 
     prev: () ->
       @gotoPage(@currentPage - 1)
@@ -38,7 +43,8 @@ $(document).ready ()->
 
   player = new SlidePlayer(slidePrefixUrl, totalPage)
   player.preload()
-
+  window.player = player #there is only one player instance
+  
   $(".prev").click (e) ->
     player.prev()
 
@@ -51,10 +57,21 @@ $(document).ready ()->
     switch e.keyCode
       when 37 # left key
         player.prev()
-        publisher.publish 'slide', 'left' if publisher?
+        if publisher?
+          publisher.publish 'slide', 'left'
+          $.post '/streamsessions/set_page',
+            from: 'host'
+            page: player.currentPage
+            (data) ->
+
       when 39 # right key
         player.next()
-        publisher.publish 'slide', 'right' if publisher?
+        if publisher?
+          publisher.publish 'slide', 'right'
+          $.post '/streamsessions/set_page',
+            from: 'host'
+            page: player.currentPage
+            (data) ->
   
   $('#start-session').click ->
     slug_name = $("#slug-name").html()
@@ -67,7 +84,7 @@ $(document).ready ()->
       $showurl.find("input").attr("value", response.url)
       $showurl.show()
 
-    $.get '/streamsessions/generate', {slug_name}, callback, 'json'
+    $.get '/streamsessions/generate', {slug_name: slug_name, page: player.currentPage}, callback, 'json'
 
   launchFullscreen = (element) ->
     if element.requestFullScreen

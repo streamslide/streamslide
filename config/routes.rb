@@ -14,6 +14,8 @@ Launchvn::Application.routes.draw do
   resources :users, only: [:show]
   match '/new' => 'upload#index'
   match '/streamsessions/generate' => 'streamsessions#generate'
+  post '/streamsessions/set_page' => 'streamsessions#set_page'
+  get '/stream/:username/streamsessions/get_page' => 'streamsessions#get_page'
   
   post '/upload/status'
   get '/upload/job'

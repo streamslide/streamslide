@@ -4,7 +4,7 @@ class StreamsessionsController < ApplicationController
     rand_str = SecureRandom.hex(16)
     usr_name = current_user.username
     channel_name = "/#{usr_name}/#{rand_str}"
-    $redis.set "#{usr_name}:session" , {id: rand_str, slug: params[:slug_name]}.to_json
+    $redis.set "#{usr_name}:session" , {id: rand_str, slug: params[:slug_name], page: params[:page]}.to_json
     url = "stream#{channel_name}"
 
     respond_to do |f|
@@ -24,5 +24,24 @@ class StreamsessionsController < ApplicationController
     channel_name = "/#{host.username}/#{id}"
     
     render 'slide/streaming/index', :locals=>{channel_name: channel_name}
+  end
+
+  def set_page
+    page = params[:page]
+    usr_name = current_user.username
+    
+    channel_info = JSON.parse($redis.get "#{usr_name}:session")
+    channel_info["page"] = page
+    $redis.set "#{usr_name}:session" , channel_info.to_json
+
+    render :nothing => true
+  end
+
+  def get_page
+    host = params[:username] 
+    channel_info_json = $redis.get "#{host}:session"
+    respond_to do |f|
+      f.json {render :json => channel_info_json}
+    end
   end
 end
