@@ -1,4 +1,6 @@
 <div class="slide">
+  <div style="display:none;" id='event-server'><%= Settings.defaults[:event_server] %></div>
+  <div style="display:none;" id='slug-name'><%= @slide.name %></div>
   <div class="main-player">
     <div class="header primary-color">
       <div id="fullscreen-btn"></div>
@@ -16,9 +18,7 @@
       </div>
   </div>
   </div>
-
   <div class="extra">
-
     <div class="author">
       <%= image_tag @slide.author.avatar_url, :class => :author_avatar %>
       <div class="author_name"><%= @slide.author.name %></div>
@@ -33,8 +33,13 @@
       <div class="download">
         <%= link_to "Download PDF", @slide.pdf_url %>
       </div>
+      <div class='btn primary btn-success' id="start-session">Start session</div>
+      <div id="stream-url-name"class="input-append" style="display:none;"> 
+        <input type="text" placeholder="Type something…">
+        <div class='btn' id="yank">copy to clipboard</div> <!--[TODO]-->
+      </div>
     </div>
-
+    
   </div>
 
 </div>
@@ -43,7 +48,6 @@
   var slidePrefixUrl = "<%= @slide.slide_url_prefix %>";
   var totalPage = "<%= @slide.pages %>";
 </script>
-
 <% content_for :javascript do %>
-  <%= javascript_include_tag 'slide' %>
+  <%= javascript_include_tag 'streamingfw/publisher','slide' %>
 <% end %>

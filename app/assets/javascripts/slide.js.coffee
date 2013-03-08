@@ -45,13 +45,29 @@ $(document).ready ()->
   $(".next").click (e) ->
     player.next()
 
+  event_server = $("#event-server").html()
+
   $(document).keydown (e) ->
     switch e.keyCode
       when 37 # left key
         player.prev()
+        publisher.publish 'slide', 'left' if publisher?
       when 39 # right key
         player.next()
+        publisher.publish 'slide', 'right' if publisher?
+  
+  $('#start-session').click ->
+    slug_name = $("#slug-name").html()
+    callback = (response) ->
+      alert "subscribing!"
+      window.channel = response.channel
+      publisher = new Publisher(event_server, response.channel)
+      window.publisher = publisher #export
+      $showurl = $("#stream-url-name")
+      $showurl.find("input").attr("value", response.url)
+      $showurl.show()
 
+    $.get '/streamsessions/generate', {slug_name}, callback, 'json'
 
   launchFullscreen = (element) ->
     if element.requestFullScreen
@@ -64,4 +80,5 @@ $(document).ready ()->
 
   $("#fullscreen-btn").click (e) ->
     launchFullscreen($("#current-slide")[0])
-
+  
+  return true

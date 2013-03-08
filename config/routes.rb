@@ -12,8 +12,9 @@ Launchvn::Application.routes.draw do
     :registrations => "users/registrations"
   }
   resources :users, only: [:show]
-
   match '/new' => 'upload#index'
+  match '/streamsessions/generate' => 'streamsessions#generate'
+  
   post '/upload/status'
   get '/upload/job'
 
@@ -30,5 +31,8 @@ Launchvn::Application.routes.draw do
     post '/follows/unfollow' => :unfollow, as: :create_unfollow
     get '/follows/following' => :following, as: :following
   end
+
+  #streaming
+  get '/stream/:username/:sessionid' => 'streamsessions#index'
 
 end

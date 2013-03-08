@@ -1,0 +1,2 @@
+defaults: &defaults
+  event_server: 'http://streamslide-event.herokuapp.com/faye'

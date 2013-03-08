@@ -5,6 +5,7 @@ gem "haml", ">= 3.1.6"
 gem "haml-rails", ">= 0.3.4", :group => :development
 gem "bootstrap-sass", ">= 2.0.4.0"
 gem "therubyracer", :group => :assets, :platform => :ruby
+gem "rails_config", "~>0.3.2"
 
 gem 'devise', '~>2.2.2'
 gem 'omniauth', '~>1.1.1'
@@ -20,7 +21,7 @@ gem 'slim', '~>1.3.6'
 gem 'eventmachine', '~>1.0.0'
 gem 'em-http-request', '~>1.0.3'
 gem 'happening', '~>0.2.5'
-
+gem 'redis'
 
 group :development do
   gem 'sqlite3'

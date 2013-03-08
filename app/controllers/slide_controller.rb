@@ -1,5 +1,4 @@
 class SlideController < ApplicationController
-
   def index
     begin
       @user = User.find_by_username(params[:username])
