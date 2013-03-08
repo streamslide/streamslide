@@ -1,5 +1,4 @@
 class StreamsessionsController < ApplicationController
-
   def generate 
     rand_str = SecureRandom.hex(16)
     usr_name = current_user.username
@@ -29,11 +28,9 @@ class StreamsessionsController < ApplicationController
   def set_page
     page = params[:page]
     usr_name = current_user.username
-    
     channel_info = JSON.parse($redis.get "#{usr_name}:session")
     channel_info["page"] = page
     $redis.set "#{usr_name}:session" , channel_info.to_json
-
     render :nothing => true
   end
 
