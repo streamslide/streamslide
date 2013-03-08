@@ -96,6 +96,14 @@ $> cd .git/hook
 $> ln -s ../../githook/pre-commit pre-commit
 ```
 
+### Event server setting
+set event server url in config/settings.yml
+```ruby
+defaults: &defaults
+  event_server: <url>
+```
+source code for event server is in https://github.com/streamslide/streamslide-eventserver
+
 To check your setup is correct or not, please add some change to your local
 codebase and run ``git add . && git commit`` to check. If you see test was run,
  it means good
