@@ -26,10 +26,10 @@ class SlidePlayer
         @progress.css("width", "#{percent}%")
         @currentPage = index
         @currentSlide.attr("src", "#{@slidePrefixUrl}/slide_#{index}.jpg")
-        for i in [index + 1..index + PRELOAD_IMAGE_COUNT]
+        for i in [0..index + PRELOAD_IMAGE_COUNT]
           @loadImage(i)
   
-  loadedImg: (index) ->
+  isImgloaded: (index) ->
     if @images_loaded?
       return @images_loaded[index]
     return false
@@ -41,4 +41,3 @@ class SlidePlayer
     @gotoPage(@currentPage + 1)
 
 window.SlidePlayer = SlidePlayer
-  

@@ -18,7 +18,8 @@ $(document).ready ()->
   tryLoadingImg = (page) ->
     if page?
       idx = parseInt(page)
-      if player.loadedImg(idx)
+      player.loadImage(idx)
+      if player.isImgloaded(idx)
         player.gotoPage(idx)
         loaded = true
 
