@@ -14,6 +14,10 @@ class Receiver
       when 'messagebox'
         controller = new MessageBoxController
         controller.execute(message.command)
+      when 'receiver'
+        controller = new ReceiverDomController
+        controller.execute(message.command)
+
       else
         return
 

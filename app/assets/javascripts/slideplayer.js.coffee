@@ -36,8 +36,20 @@ class SlidePlayer
 
   prev: () ->
     @gotoPage(@currentPage - 1)
+    if window.publisher?
+      window.publisher.publish 'slide', 'prev'
+      $.post '/streamsessions/set_page',
+        from: 'host'
+        page: this.currentPage
+        (data) ->
 
   next: () ->
     @gotoPage(@currentPage + 1)
+    if window.publisher?
+      window.publisher.publish 'slide', 'next'
+      $.post '/streamsessions/set_page',
+        from: 'host'
+        page: this.currentPage
+        (data) ->
 
 window.SlidePlayer = SlidePlayer

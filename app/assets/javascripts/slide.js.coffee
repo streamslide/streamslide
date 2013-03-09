@@ -15,34 +15,48 @@ $(document).ready ()->
     switch e.keyCode
       when 37 # left key
         player.prev()
-        if publisher?
-          publisher.publish 'slide', 'left'
-          $.post '/streamsessions/set_page',
-            from: 'host'
-            page: player.currentPage
-            (data) ->
 
       when 39 # right key
         player.next()
-        if publisher?
-          publisher.publish 'slide', 'right'
-          $.post '/streamsessions/set_page',
-            from: 'host'
-            page: player.currentPage
-            (data) ->
+        
   
   $('#start-session').click ->
     slug_name = $("#slug-name").html()
     callback = (response) ->
-      alert "subscribing!"
+      $('#streaming-gif').show()
+      $('#pause-gif').hide()
+
       window.channel = response.channel
-      publisher = new Publisher(event_server, response.channel)
-      window.publisher = publisher #export
+      if window.publisher?
+        window.publisher = null
+      window.publisher = new Publisher(event_server, response.channel)
+      window.publisher.turnon()
+
       $showurl = $("#stream-url-name")
       $showurl.find("input").attr("value", response.url)
       $showurl.show()
-
     $.get '/streamsessions/generate', {slug_name: slug_name, page: player.currentPage}, callback, 'json'
+
+  $('#stop-session').click ->
+    window.publisher.turnstop()
+    $('#streaming-gif').hide()
+    $('#pause-gif').show()
+
+
+  $('#delete-session').click ->
+    window.publisher.turnoff()
+    if window.publisher?
+      window.publisher = null
+      $('#streaming-gif').hide()
+      $('#pause-gif').hide()
+      $showurl = $("#stream-url-name")
+      $showurl.hide()
+
+  $('#resume-session').click ->
+    window.publisher.turnon()
+    $('#streaming-gif').show()
+    $('#pause-gif').hide()
+
 
   launchFullscreen = (element) ->
     if element.requestFullScreen
