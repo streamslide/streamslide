@@ -8,6 +8,8 @@ class SlidePlayer
     @images_loaded = (false for i in [0..@totalPage])
 
   loadImage: (index) ->
+    if index > @totalPage
+      return
     unless @images_loaded[index]
       klass = this
       image = new Image
@@ -26,7 +28,7 @@ class SlidePlayer
         @progress.css("width", "#{percent}%")
         @currentPage = index
         @currentSlide.attr("src", "#{@slidePrefixUrl}/slide_#{index}.jpg")
-        for i in [0..index + PRELOAD_IMAGE_COUNT]
+        for i in [1..index + PRELOAD_IMAGE_COUNT]
           @loadImage(i)
   
   isImgloaded: (index) ->
