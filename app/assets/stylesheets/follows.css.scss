@@ -1,3 +1,19 @@
-// Place all the styles related to the follows controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.following-user {
+  padding: 20px 150px 20px 100px;
+  height: 100px;
+}
+
+.following-user img {
+  float: left;
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+
+.following-user .user-info {
+  float: left;
+}
+
+.follow-btn {
+  float: right;
+}

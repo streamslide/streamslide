@@ -17,6 +17,6 @@ class FollowsController < ApplicationController
   end
 
   def following
-
+    @following = User.joins('INNER JOIN follows ON follows.following_user_id = users.id').where('user_id = ?', params[:id])
   end
 end

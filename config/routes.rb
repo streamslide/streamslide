@@ -30,7 +30,7 @@ Launchvn::Application.routes.draw do
   controller :follows do
     post '/follows/follow' => :follow, as: :create_follow
     post '/follows/unfollow' => :unfollow, as: :create_unfollow
-    get '/follows/following' => :following, as: :following
+    get '/follows/following/:id' => :following, as: :following
   end
 
   #streaming
