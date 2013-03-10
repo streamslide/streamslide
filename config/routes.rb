@@ -16,12 +16,11 @@ Launchvn::Application.routes.draw do
   match '/streamsessions/generate' => 'streamsessions#generate'
   post '/streamsessions/set_page' => 'streamsessions#set_page'
   get '/stream/:username/streamsessions/get_page' => 'streamsessions#get_page'
-  
+
   post '/upload/status'
   get '/upload/job'
 
   put '/slide/edit' => 'slide#edit'
-  get '/:username/:slug' => 'slide#index', :as => "slide_index"
 
   # home
   root :to => "home#index"
@@ -37,4 +36,5 @@ Launchvn::Application.routes.draw do
   #streaming
   get '/stream/:username/:sessionid' => 'streamsessions#index'
 
+  get '/:username/:slug' => 'slide#index', :as => "slide_index"
 end
