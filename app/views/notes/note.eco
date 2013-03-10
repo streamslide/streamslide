@@ -1,0 +1,4 @@
+<div id="<%= @newNoteIid %>" class="note-draggable note" style="position: absolute;">
+  <img class="note-delete-btn" src="/assets/note-delete.png">
+  <textarea placeholder="new note..."></textarea>
+</div>

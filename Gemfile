@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 gem 'rails', '3.2.10'
 gem 'jquery-rails', '2.1.4'
+gem 'jquery-ui-rails'
 gem "haml", ">= 3.1.6"
 gem "haml-rails", ">= 0.3.4", :group => :development
 gem "bootstrap-sass", ">= 2.0.4.0"
