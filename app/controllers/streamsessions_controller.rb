@@ -22,7 +22,7 @@ class StreamsessionsController < ApplicationController
     
     channel_name = "/#{host.username}/#{id}"
     
-    render 'slide/streaming/index', :locals=>{channel_name: channel_name}
+    render 'slide/viewer/index', :locals=>{channel_name: channel_name}
   end
 
   def set_page

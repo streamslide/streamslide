@@ -1,28 +1,48 @@
 class Publisher
-  constructor: (@servername, @channel, @state = null) ->
+  constructor: (@faye, @channel, @state = null, @abilities=[]) ->
     console.log 'publisher created'
     @STATEOPTIONS = ON: 'on', STOP: 'stop', OFF: 'off'
-    @faye = new Faye.Client(@servername)
+    @ABILITYLIST = ['pubmessage', 'pubcommand', 'pubquestion']
     @faye.subscribe @channel, (data) ->
-      console.log('received data')
+
+    @state = @STATEOPTIONS.OFF
+  
+  addablility: (ability) ->
+    if ability in @ABILITYLIST and !(ability in @abilities)
+      @abilities.push(ability)
+      return true
+    else
+      return false
+  
+  removeability: (ability) ->
+    @abilities = _.without(@abilities, ability)
+    return true
 
   turnon: () ->
     @state = @STATEOPTIONS.ON
-    this.publish('receiver', 'on')
+    mes = controller: 'receiver', command: 'on', type: 'pubcommand'
+    this.publish(mes)
 
   turnstop: () ->
     @state = @STATEOPTIONS.ON
-    this.publish('receiver', 'stop')
+    mes = controller: 'receiver', command: 'stop', type: 'pubcommand'
+    this.publish(mes)
     @state = @STATEOPTIONS.STOP
 
   turnoff: () ->
     @state = @STATEOPTIONS.ON
-    this.publish('receiver', 'off')
+    mes = controller: 'receiver', command: 'off', type: 'pubcommand'
+    this.publish(mes)
     @state = @STATEOPTIONS.OFF
 
-  publish: (controller, command) ->
-    if @state == @STATEOPTIONS.ON
-      message = this.makemessage(controller, command)
+  publish: (message) ->
+    type = message.type
+    controller = message.controller
+    command = message.command
+    ext = message.ext
+
+    if @state == @STATEOPTIONS.ON and (type in @abilities)
+      message = this.makemessage(controller, command, type, ext)
       publication = @faye.publish(@channel, message)
       success = ()->
         console.log('publish success')
@@ -33,11 +53,16 @@ class Publisher
       publication.errback error
     return true
   
-  makemessage: (controller, command) ->
-    data = controller: controller, command: command
+  makemessage: (controller, command, type, ext) ->
+    MAPPER = 'pubcommand':'recvcommand', 'pubmessage':'recvmessage', 'pubquestion':'recvquestion'
+
+    data = controller: controller, command: command, type: MAPPER[type]
+    if ext?
+      data.ext = ext
+
     message =
-      'text': data
-      'ext': {'auth_token' : 'anything'}
+      'content': data
+      'ext': {'token' : 'anything'}
     return message
 
 window.Publisher = Publisher #export

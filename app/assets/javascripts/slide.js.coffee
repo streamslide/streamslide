@@ -29,8 +29,13 @@ $(document).ready ()->
       window.channel = response.channel
       if window.publisher?
         window.publisher = null
-      window.publisher = new Publisher(event_server, response.channel)
+      faye = new Faye.Client(event_server)
+      window.publisher = new Publisher(faye, response.channel)
       window.publisher.turnon()
+      window.publisher.addablility('pubcommand')
+
+      window.receiver = new Receiver(faye, response.channel)
+      window.receiver.addablility('recvquestion')
 
       $showurl = $("#stream-url-name")
       $showurl.find("input").attr("value", response.url)

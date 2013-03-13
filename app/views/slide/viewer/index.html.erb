@@ -9,7 +9,7 @@
       <img id="current-slide" src="<%= @slide.page_url 1 %>" />
     </div>
     <div class="footer primary-color">
-      <div class="controls">
+      <div class="controls" style="display:none;">
         <div class="prev control-btn"></div>
         <div class="next control-btn"></div>
       </div>
@@ -24,11 +24,23 @@
     <div class='img loading' id='pause-gif' style='display:none;'><img src='/assets/streampause.gif'></div>
     <div class='img loading' id='offline-gif' style='display:none;'><img src='/assets/streamstop.jpeg'></div>
   </div>
-</div>
+  <div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span10">
+      <div class="well form-horizontal" id="to-speaker-form">
+        <fieldset>
+          <span class="add-on">Message:</span>
+          <input class="span9" type="text" id="to-speaker-message" size=16/>
+          <button class="btn btn-primary" type="button" id="to-speaker-send">Send</button>
+        </fieldset>
+      </div>
+    </div> <!--span10-->
+  </div><!--row fluild-->
+</div><!--extra-->
 <script type="text/javascript">
   var slidePrefixUrl = "<%= @slide.slide_url_prefix %>";
   var totalPage = "<%= @slide.pages %>";
 </script>
 <% content_for :javascript do %>
-  <%= javascript_include_tag 'slideplayer','streamingfw/receiver', 'streamingfw/slidecontroller', 'streamingfw/receiverdomcontroller','slide_streaming'%>
+  <%= javascript_include_tag 'slideplayer','streamingfw/receiver','streamingfw/publisher', 'streamingfw/slidecontroller', 'streamingfw/receiverdomcontroller','slidestream_viewer'%>
 <% end %>
