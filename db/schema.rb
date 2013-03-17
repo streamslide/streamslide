@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130307055003) do
+ActiveRecord::Schema.define(:version => 20130317083510) do
 
   create_table "follows", :force => true do |t|
     t.integer  "following_user_id"
@@ -23,6 +23,23 @@ ActiveRecord::Schema.define(:version => 20130307055003) do
   add_index "follows", ["following_user_id"], :name => "index_follows_on_following_user_id"
   add_index "follows", ["user_id"], :name => "index_follows_on_user_id"
 
+  create_table "notes", :force => true do |t|
+    t.integer  "pagenum"
+    t.integer  "slide_id"
+    t.integer  "user_id"
+    t.integer  "top"
+    t.integer  "left"
+    t.integer  "width"
+    t.integer  "height"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "notes", ["pagenum"], :name => "index_notes_on_pagenum"
+  add_index "notes", ["slide_id"], :name => "index_notes_on_slide_id"
+  add_index "notes", ["user_id"], :name => "index_notes_on_user_id"
+
   create_table "slides", :force => true do |t|
     t.integer  "user_id"
     t.integer  "pages"
@@ -32,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20130307055003) do
     t.datetime "updated_at",                 :null => false
     t.text     "name"
     t.text     "description"
-    t.integer  "view_count",  :default => 0
+    t.integer  "view_count",  :default => 1
     t.string   "slug"
   end
 

@@ -14,6 +14,9 @@ jQuery ->
       height: 10
       status: 0     #0: creating, 1: editting, 2: icon
       content: ""
+
+    url: ->
+      '/notes'
 #=====================================================
 # NoteList : Collection
 #=====================================================
@@ -129,7 +132,32 @@ jQuery ->
         @collection.at(@collection.length-1).set(status: 1)
       console.log "mouse up"
 
-  Backbone.sync = (method, model, success, error) ->
-    success()
+    reset: ->
+      @collection.remove(@collection.models)
 
-  window.NoteListView = NoteListView
+    getNotes: ->
+      @collection.url = '/notes'
+      @collection.fetch()
+
+  Backbone.sync = (method, model, success, error) ->
+   switch(method)
+     when 'create' then console.log "Create"
+     when 'read' then console.log "Read"
+
+#=====================================================
+# NoteHandler
+#=====================================================
+  class NoteHandler
+    constructor: (notearea) ->
+      @noteListView = new NoteListView(el: notearea)
+
+    getNotes: (slide_id, pagenum) ->
+      @noteListView.reset()
+      console.log "Get Notes"
+      @noteListView.getNotes()
+
+    syncNotes: (slide_id, pagenum) ->
+      console.log "Sync notes: slide_id = #{slide_id}, pagenum = #{pagenum}"
+
+
+  #window.NoteHandler = NoteHandler

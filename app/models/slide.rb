@@ -2,6 +2,8 @@ require 'securerandom'
 
 class Slide < ActiveRecord::Base
   belongs_to :user
+  has_many :notes, dependent: :destroy
+
   attr_accessible :filename, :pages, :s3_key, :user_id,
                   :name, :description, :view_count, :slug
 

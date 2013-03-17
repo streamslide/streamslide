@@ -33,6 +33,9 @@ Launchvn::Application.routes.draw do
     get '/follows/following/:id' => :following, as: :following
   end
 
+  # note
+  resources :notes, only: [:index, :create]
+
   #streaming
   get '/stream/:username/:sessionid' => 'streamsessions#index'
 
