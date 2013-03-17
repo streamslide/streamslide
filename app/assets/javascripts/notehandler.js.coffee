@@ -1,99 +1,135 @@
-class NoteHandler
-  constructor: (@notearea) ->
-    @currentNoteIndex = 0
+//= require jquery.ui.draggable
+//= require jquery.ui.resizable
 
-  startTracking: ->
-    $("#{@notearea}").mousedown (e) =>
-      @mousedown(e)
-    $("#{@notearea}").mousemove (e) =>
-      @mousemove(e)
-    $("#{@notearea}").mouseup (e) =>
-      @mouseup(e)
+jQuery ->
 
-  createNote: (w, h) ->
-    console.log "Add new note"
-    newNoteIndex = @currentNoteIndex++
+#=====================================================
+# NoteModel
+#=====================================================
+  class NoteModel extends Backbone.Model
+    defaults:
+      top: 0
+      left: 0
+      width: 10
+      height: 10
+      status: 0     #0: creating, 1: editting, 2: icon
+      content: ""
+#=====================================================
+# NoteList : Collection
+#=====================================================
+  class NoteList extends Backbone.Collection
+    model: NoteModel
 
-    #template = require("views/notes/note")
-    #editingElement = template(newNoteId)
+#=====================================================
+# NoteView
+#=====================================================
+  class NoteView extends Backbone.View
+    tagName: 'div'
+    className: 'note-draggable note'
+    attributes: {position: 'absolute'}
 
-    editingElement = '<div id="note-' + newNoteIndex + '" class="note-draggable note" style="position: absolute;">' +
-                       '<img class="note-delete-btn" src="/assets/note-delete.png">' +
-                       '<textarea class="note-content" placeholder="new note..."></textarea>' +
-                    '</div>'
+    initialize: ->
+      _.bindAll @
+      @model.bind 'add', @render
+      @model.bind 'change', @update
+      @model.bind 'remove', @unrender
 
-    @currentNote = $(editingElement)
-    @currentNote.css("top","#{@newNoteTop}px")
-    @currentNote.css("left", "#{@newNoteLeft}px")
-    @currentNote.css("width", "#{w}px !important")
-    @currentNote.css("height", "#{h}px !important")
+    render: =>
+      @rerender()
 
-    @currentNote.appendTo("#{@notearea}")
-
-    # enable drag
-    @currentNote.draggable ->
-      containment: "#{@notearea}"
-      stop (e, ui) ->
-        console.log "stop dragging"
-
-    @currentNote.find('textarea').bind 'blur', (e) =>
-      @disableEditing(newNoteIndex)
-
-    @currentNote.find('.note-delete-btn').bind 'click', (e) =>
-      @deleteNote(newNoteIndex)
-
-  updateNoteSize: (w, h) ->
-    @currentNote.css({width: "#{w}px", height: "#{h}px"})
-
-  enableEditing: (noteIndex) ->
-    n = @getNote(noteIndex)
-    notecontent = n.find('p').text()
-    n.find('p').replaceWith('<textarea class="note-content" placeholder="new note...">' + notecontent + '</textarea>')
-    n.find('textarea').bind 'blur', (e) =>
-      @disableEditing(noteIndex)
-    console.log notecontent
-
-  disableEditing: (noteIndex) ->
-    console.log "disable note: " + noteIndex
-    n = @getNote(noteIndex)
-    notecontent = n.find('textarea').val()
-    console.log notecontent
-    p = $("<p class='note-content'>#{notecontent}</p>")
-    p.bind 'dblclick', (e) =>
-      @enableEditing(noteIndex)
-    n.find('textarea').replaceWith(p)
-
-  getNote: (noteIndex) ->
-    $("#{@notearea}").find("#note-"+noteIndex)
-
-  deleteNote: (noteIndex) ->
-    console.log "Delete note" + noteIndex
-    @getNote(noteIndex).remove()
-
-  mousedown: (e) ->
-    if ($(e.target).hasClass('note-content'))
-      return
-    @mouseFlag = true
-    @newNoteTop = e.pageY - $("#{@notearea}").offset().top
-    @newNoteLeft = e.pageX - $("#{@notearea}").offset().left
-    console.log "top = #{@newNoteTop}, left=#{@newNoteLeft}"
-
-  mousemove: (e) ->
-    if !@mouseFlag
-      return
-    w = e.pageX - $("#{@notearea}").offset().left - @newNoteLeft
-    h = e.pageY - $("#{@notearea}").offset().top - @newNoteTop
-    console.log "mouse dragging: W = #{w}, H = #{h}"
-    if w > 10
-      if @newNoteCreated
-        @updateNoteSize(w,h)
+    update: =>
+      if @model.hasChanged('status')
+        console.log "status has changed to : "+@model.get 'status'
+        if @model.previous('status') != 0
+          @rerender()
       else
-        @createNote(w, h)
+        $(@el).css({top: "#{@model.get('top')}px", left: "#{@model.get('left')}px", width: "#{@model.get('width')}px", height: "#{@model.get('height')}px"})
+
+    rerender: ->
+      if @model.get('status') == 2
+        text = $(@el).find('textarea').val()
+        @model.set({'content': text}, {silent: true})
+        $(@el).css({top: "#{@model.get('top')}px", left: "#{@model.get('left')}px", width: "50px", height: "50px", background: 'transparent'})
+        $(@el).html """
+          <img class="note-icon" src="/assets/note-icon.png">
+        """
+        @
+      else
+         $(@el).css({top: "#{@model.get('top')}px", left: "#{@model.get('left')}px", width: "#{@model.get('width')}px", height: "#{@model.get('height')}px", "background-color": "rgba(255, 255, 0, 0.5)"})
+         $(@el).html """
+          <img class="note-delete-btn" src="/assets/note-delete.png">
+          <textarea class="note-content" placeholder="new note..."></textarea>
+        """
+        $(@el).find('textarea').val(@model.get('content'))
+        @
+
+    unrender: =>
+      $(@el).remove()
+
+    events:
+      'click .note-delete-btn': 'remove'
+      'dblclick': 'changestatus'
+
+    remove: ->
+      @model.destroy()
+
+    changestatus: (e) ->
+      console.log "Click me"
+      switch @model.get('status')
+        when 1 then @model.set(status: 2)
+        when 2 then @model.set(status: 1)
+
+#=====================================================
+# NoteListView Class
+#=====================================================
+  class NoteListView extends Backbone.View
+
+    initialize: ->
+      _.bindAll @
+      @collection = new NoteList
+      @collection.bind 'add', @appendNote
+      @counter = 0
+
+    addNote: ->
+      @counter++
+      newnote = new NoteModel(top: @locationOnMouseDown.y, left: @locationOnMouseDown.x)
+      @collection.add newnote
+
+    appendNote: (note) ->
+      noteview = new NoteView(model: note, id: "note-#{@counter}")
+      $(@el).append noteview.render().el
+
+    events:
+      'mousedown': 'mousedown'
+      'mousemove': 'mousemove'
+      'mouseup': 'mouseup'
+
+    mousedown: (e) ->
+      if($(e.target).hasClass('note-content') || $(e.target).hasClass('note') || $(e.target).hasClass('note-icon'))
+        return
+      @mouseFlag = true
+      @locationOnMouseDown = {x: e.pageX - $(@el).offset().left, y: e.pageY - $(@el).offset().top}
+      console.log "mouse down"
+
+    mousemove: (e) ->
+      if !@mouseFlag
+        return
+      w = e.pageX - $(@el).offset().left - @locationOnMouseDown.x
+      h = e.pageY - $(@el).offset().top - @locationOnMouseDown.y
+      if @newNoteCreated
+        @collection.at(@collection.length-1).set({width: w, height: h})
+      else
+        @addNote()
         @newNoteCreated = true
 
-  mouseup: (e) ->
-    @mouseFlag = false
-    @newNoteCreated = false
-    console.log "mouseup"
+    mouseup: (e) ->
+      @mouseFlag = false
+      if @newNoteCreated
+        @newNoteCreated = false
+        @collection.at(@collection.length-1).set(status: 1)
+      console.log "mouse up"
 
-window.NoteHandler = NoteHandler
+  Backbone.sync = (method, model, success, error) ->
+    success()
+
+  window.NoteListView = NoteListView
