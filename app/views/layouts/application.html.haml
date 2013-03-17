@@ -21,7 +21,7 @@
       .container
         .content
           .row
-            .span16.container
+            .span12.container
               = render 'layouts/messages'
               = yield
 
@@ -29,5 +29,5 @@
       = render 'layouts/footer'
 
     = javascript_include_tag "application"\
-    = javascript_include_tag :defaults, "http://streamslide-event.herokuapp.com/faye.js"
+    = javascript_include_tag :defaults 
     = yield(:javascript)

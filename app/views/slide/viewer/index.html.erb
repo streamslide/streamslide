@@ -3,6 +3,7 @@
 <div class='slide'>
   <div class="main-player">
     <div class="header primary-color">
+      <div class='img loading' id='streaming-gif' style='display:none;'><img src='/assets/streamload.gif'></div>
       <div id="fullscreen-btn"></div>
     </div>
     <div class="player">
@@ -18,29 +19,28 @@
     </div>
   </div>
 </div>
+<aside>
+  <p id="name-area"></p>
+  <div id="chat-wrap"><div id="chat-area"></div></div>
+  <form id="send-message-area">
+    <p id='send-button' class='btn btn-primary'>MESSAGE</p>
+    <textarea id="sendie" maxlength = '100' ></textarea>
+  </form> 
+</aside>
 <div class="extra">
   <div class="share">
-    <div class='img loading' id='streaming-gif' style='display:none;'><img src='/assets/streamload.gif'></div>
     <div class='img loading' id='pause-gif' style='display:none;'><img src='/assets/streampause.gif'></div>
     <div class='img loading' id='offline-gif' style='display:none;'><img src='/assets/streamstop.jpeg'></div>
   </div>
-  <div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span10">
-      <div class="well form-horizontal" id="to-speaker-form">
-        <fieldset>
-          <span class="add-on">Message:</span>
-          <input class="span9" type="text" id="to-speaker-message" size=16/>
-          <button class="btn btn-primary" type="button" id="to-speaker-send">Send</button>
-        </fieldset>
-      </div>
-    </div> <!--span10-->
-  </div><!--row fluild-->
+  
 </div><!--extra-->
+
 <script type="text/javascript">
   var slidePrefixUrl = "<%= @slide.slide_url_prefix %>";
   var totalPage = "<%= @slide.pages %>";
 </script>
 <% content_for :javascript do %>
-  <%= javascript_include_tag 'slideplayer','streamingfw/receiver','streamingfw/publisher', 'streamingfw/slidecontroller', 'streamingfw/receiverdomcontroller','slidestream_viewer'%>
+  <%= stylesheet_link_tag 'chat' %>
+  <%= stylesheet_link_tag 'slide/viewer' %>
+  <%= javascript_include_tag 'slideplayer','streamingfw/receiver','streamingfw/publisher', 'streamingfw/slidecontroller', 'streamingfw/receiverdomcontroller','slidestream_viewer',"http://streamslide-event.herokuapp.com/faye.js"%>
 <% end %>
