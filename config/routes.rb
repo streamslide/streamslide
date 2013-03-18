@@ -34,7 +34,7 @@ Launchvn::Application.routes.draw do
   end
 
   # note
-  resources :notes, only: [:index, :create]
+  resources :notes, only: [:index, :create, :update, :destroy]
 
   #streaming
   get '/stream/:username/:sessionid' => 'streamsessions#index'

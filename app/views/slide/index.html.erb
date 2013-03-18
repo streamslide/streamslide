@@ -11,6 +11,7 @@
     </div>
     <div class="player" id="player-container" style="position: relative">
       <img id="current-slide" src="<%= @slide.page_url 1 %>" />
+      <div id="notes-area"></div>
     </div>
     <div class="footer primary-color">
       <div class="controls">
@@ -55,5 +56,5 @@
   var totalPage = "<%= @slide.pages %>";
 </script>
 <% content_for :javascript do %>
-  <%= javascript_include_tag 'slideplayer','streamingfw/publisher','slide', 'notehandler', 'note', 'streamingfw/receiver' %>
+  <%= javascript_include_tag 'backbone/launchvn','slideplayer','streamingfw/publisher','slide', 'notehandler', 'note', 'streamingfw/receiver' %>
 <% end %>

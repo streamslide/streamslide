@@ -4,10 +4,8 @@
 #= require_tree ./views
 #= require_tree ./routers
 
-###
 window.Launchvn =
   Models: {}
   Collections: {}
   Routers: {}
   Views: {}
-###
