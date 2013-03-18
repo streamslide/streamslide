@@ -1,0 +1,13 @@
+$width: 500px;
+.main-player {
+  width:  $width;
+  float: left;
+  margin-right: 10px;
+}
+
+div.img.loading {
+  width: 20px;
+  height: 30px;  
+  float: right;
+  position: absolute;
+}

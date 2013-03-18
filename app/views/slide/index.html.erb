@@ -46,7 +46,7 @@
       </div>
       <div class='img loading' id='streaming-gif' style='display:none;'><img src='/assets/streamload.gif'></div>
       <div class='img loading' id='pause-gif' style='display:none;'><img src='/assets/streampause.gif'></div>
-      <div
+      <div>
     </div>
   </div>
 </div>
@@ -56,5 +56,5 @@
   var totalPage = "<%= @slide.pages %>";
 </script>
 <% content_for :javascript do %>
-  <%= javascript_include_tag 'backbone/launchvn','slideplayer','streamingfw/publisher','slide', 'notehandler', 'note', 'streamingfw/receiver' %>
+  <%= javascript_include_tag 'backbone/launchvn','slideplayer','streamingfw/publisher','slide', 'notehandler', 'note', 'streamingfw/receiver',"http://streamslide-event.herokuapp.com/faye.js" %>
 <% end %>
