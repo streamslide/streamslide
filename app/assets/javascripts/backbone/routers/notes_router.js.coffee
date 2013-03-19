@@ -1,7 +1,8 @@
 class Launchvn.Routers.NotesRouter extends Backbone.Router
   initialize: ->
     @notes = new Launchvn.Collections.NotesCollection()
-    @indexview = new Launchvn.Views.Notes.IndexView({notes: @notes})
+    @indexview = new Launchvn.Views.Notes.IndexView({collection: @notes})
+    #$("#notesarea").html(@indexview.render().el)
 
   routes:
     "new"      : "newNote"
@@ -10,25 +11,17 @@ class Launchvn.Routers.NotesRouter extends Backbone.Router
 
   index: (slideid, pagenum) ->
     console.log "Router: index"
-    @notes.slideid = slideid
-    @notes.pagenum = pagenum
-
     @notes.fetch
       data:
         s: slideid
         p: pagenum
-      success: (collection, response, options)->
+      success: ->
         console.log "Fetch: success"
-        @notes = collection
-        for n in @notes.models
-          n.set({status: 2}, {silent: true})
-        @indexview = new Launchvn.Views.Notes.IndexView({notes: @notes})
-        $("#notesarea").html(@indexview.render().el)
       error: ->
         console.log "Fetch: error"
 
   createNewNote: (slideid, pagenum, t, l) ->
-    console.log "Router: Create new note"
+    console.log "Router: Create new note" + @notes.length
     @newNote = new Launchvn.Models.Note(slide_id: slideid, pagenum: pagenum, top: t, left: l, status: 0)
     @notes.add @newNote
 

@@ -5,15 +5,29 @@ class Launchvn.Views.Notes.IndexView extends Backbone.View
   #el: 'notesarea'
 
   initialize: () ->
-    @options.notes.bind 'add', @appendNote
-    @options.notes.bind 'reset', @addAll
+    @collection.bind 'add', @appendNote
+    @collection.bind 'reset', @reset
+    @collection.bind 'remove', @remove
+    @collection.bind 'sync', @sync
+
+  reset: () =>
+    console.log "reset"
+    $("#notesarea").html(@render().el)
+
+  remove: () =>
+    console.log "remove"
+
+  sync: () =>
+    console.log "sync"
+  #==========================
 
   appendNote: (note) =>
+    console.log "ADD"
     noteview = new Launchvn.Views.Notes.NoteView({model: note})
     $(@el).append noteview.render().el
 
   addAll: () =>
-    @options.notes.each(@appendNote)
+    @collection.each(@appendNote)
 
   render: =>
     @addAll()

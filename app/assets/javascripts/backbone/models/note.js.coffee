@@ -8,7 +8,7 @@ class Launchvn.Models.Note extends Backbone.Model
     left: 0
     width: 10
     height: 10
-    status: 0     #0: creating, 1: editting, 2: icon
+    status: 2     #0: creating, 1: editting, 2: icon
     content: ""
 
 class Launchvn.Collections.NotesCollection extends Backbone.Collection
