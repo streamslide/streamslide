@@ -39,4 +39,7 @@ class Launchvn.Routers.NotesRouter extends Backbone.Router
     @newNote.set(status: s)
 
   saveNotes: ->
+    for n in @notes.models
+      if n.get('status') != 2
+        n.set(status: 2)
     @notes.update()
