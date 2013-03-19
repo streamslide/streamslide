@@ -8,17 +8,11 @@ class Launchvn.Views.Notes.NoteView extends Backbone.View
   icontemplate: JST["backbone/templates/notes/note_icon"]
 
   initialize: ->
-    #_.bindAll(this, 'added')
     @model.bind 'change', @update
-    @model.bind 'add', @added
 
   events:
     'click .note-delete-btn' : 'destroy'
     'dblclick': 'changestatus'
-
-  added: =>
-    alert 'Hello'
-    console.log "NoteView: added"
 
   changestatus: (e) ->
     console.log "changestatue: currentStatus = " + @model.get 'status'
@@ -33,15 +27,17 @@ class Launchvn.Views.Notes.NoteView extends Backbone.View
     return false
 
   render: ->
-    $(@el).css({top: "#{@model.get('top')}px", left: "#{@model.get('left')}px", width: "50px", height: "50px", background: 'transparent'})
-    @$el.html(@icontemplate(@model.toJSON() ))
-    return this
+    return @rerender()
 
   update: =>
     if @model.hasChanged('status')
       console.log "update: current status = "+@model.get 'status'
+      if @model.previous('status') != 0
+        @rerender()
+    else
+       $(@el).css({top: "#{@model.get('top')}px", left: "#{@model.get('left')}px", width: "#{@model.get('width')}px", height: "#{@model.get('height')}px"})
 
-  rerender: ->
+  rerender: =>
     if @model.get('status') == 2
       text = $(@el).find('textarea').val()
       @model.set({'content': text}, {silent: true})
@@ -51,4 +47,4 @@ class Launchvn.Views.Notes.NoteView extends Backbone.View
       $(@el).css({top: "#{@model.get('top')}px", left: "#{@model.get('left')}px", width: "#{@model.get('width')}px", height: "#{@model.get('height')}px", "background-color": "rgba(255, 255, 0, 0.5)"})
       @$el.html(@template(@model.toJSON() ))
 
-      return this
+    return this

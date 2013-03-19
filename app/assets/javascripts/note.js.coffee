@@ -1,7 +1,7 @@
 $(document).ready ()->
   $("#player-container img").css('user-drag', 'none').css('-moz-user-select','none').css('-webkit-user-drag','none')
 
-  noteHandler = new NoteHandler('#notes-area')
+  noteHandler = new NoteHandler('#notesarea')
   noteHandler.getNotes(2, 1)
 
   #$(".next").click (e) ->
