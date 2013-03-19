@@ -42,4 +42,7 @@ class NoteHandler
     @pagenum = pagenum
     @router.index(slideid, pagenum)
 
+  saveNotes: ->
+    @router.saveNotes()
+
 window.NoteHandler = NoteHandler

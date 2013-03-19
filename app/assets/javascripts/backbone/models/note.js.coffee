@@ -14,3 +14,12 @@ class Launchvn.Models.Note extends Backbone.Model
 class Launchvn.Collections.NotesCollection extends Backbone.Collection
   model: Launchvn.Models.Note
   url: "/notes"
+
+  update: ->
+    for m in @models
+      m.sync("update", m,
+        success: ->
+          console.log "ok"
+        error: ->
+          console.log "error"
+      )

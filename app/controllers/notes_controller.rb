@@ -13,17 +13,34 @@ class NotesController < ApplicationController
     slide_id = params[:note][:slide_id]
     pagenum = params[:note][:pagenum]
 
-    newnote = Note.create(user_id: user_id, slide_id: slide_id, pagenum: pagenum, top: params[:note][:top], left: params[:note][:left], content: params[:note][:content])
+    newnote = Note.create(user_id: user_id,
+              slide_id: slide_id,
+              pagenum: pagenum,
+              top: params[:note][:top],
+              left: params[:note][:left],
+              width: 100,
+              height: 50,
+              content: params[:note][:content])
     render json: newnote
   end
 
   def update
-
+    note = Note.find(params[:id])
+    if note
+      note.update_attributes(top: params[:note][:top],
+                  left: params[:note][:left],
+                  width: params[:note][:width],
+                  height: params[:note][:height],
+                  content: params[:note][:content])
+      render json: {"success" => true}
+    else
+      render json: {"success" => false}
+    end
   end
 
   def destroy
     Note.destroy(params[:id])
-    render json: {'success'=>true}
+    render json: {"success" => true}
   end
 
 end

@@ -4,6 +4,7 @@ $(document).ready ()->
   noteHandler = new NoteHandler('#notesarea')
   noteHandler.getNotes(2, 1)
 
-  #$(".next").click (e) ->
+  $(".next").click (e) ->
+    noteHandler.saveNotes()
   #  notehandler.syncNotes(2, 1)
   #  notehandler.getNotes(2,2)

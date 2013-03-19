@@ -37,3 +37,6 @@ class Launchvn.Routers.NotesRouter extends Backbone.Router
 
   changeTopNoteStatus: (s) ->
     @newNote.set(status: s)
+
+  saveNotes: ->
+    @notes.update()
