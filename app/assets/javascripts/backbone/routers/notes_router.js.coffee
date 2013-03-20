@@ -1,8 +1,6 @@
 class Launchvn.Routers.NotesRouter extends Backbone.Router
   initialize: ->
     @notes = new Launchvn.Collections.NotesCollection()
-    @indexview = new Launchvn.Views.Notes.IndexView({collection: @notes})
-    #$("#notesarea").html(@indexview.render().el)
 
   routes:
     "new"      : "newNote"
@@ -11,6 +9,7 @@ class Launchvn.Routers.NotesRouter extends Backbone.Router
 
   index: (slideid, pagenum) ->
     console.log "Router: index"
+    @indexview = new Launchvn.Views.Notes.IndexView({collection: @notes})
     @notes.fetch
       data:
         s: slideid

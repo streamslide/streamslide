@@ -12,8 +12,6 @@ class Launchvn.Views.Notes.IndexView extends Backbone.View
 
   reset: () =>
     console.log "reset"
-    $(@el).empty()
-    #$("#notesarea").empty()
     $("#notesarea").html(@render().el)
 
   remove: () =>
@@ -21,6 +19,7 @@ class Launchvn.Views.Notes.IndexView extends Backbone.View
 
   sync: () =>
     console.log "sync"
+
   #==========================
 
   appendNote: (note) =>
