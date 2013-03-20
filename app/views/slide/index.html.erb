@@ -54,6 +54,7 @@
 <script type="text/javascript">
   var slidePrefixUrl = "<%= @slide.slide_url_prefix %>";
   var totalPage = "<%= @slide.pages %>";
+  var slideid = "<%= @slide.id %>";
 </script>
 <% content_for :javascript do %>
   <%= javascript_include_tag 'backbone/launchvn','slideplayer','streamingfw/publisher','slide', 'notehandler', 'note', 'streamingfw/receiver',"http://streamslide-event.herokuapp.com/faye.js" %>

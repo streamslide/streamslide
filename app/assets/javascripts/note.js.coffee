@@ -4,15 +4,16 @@ $(document).ready ()->
   currentpage = 1
 
   noteHandler = new NoteHandler('#notesarea')
-  noteHandler.getNotes(2, currentpage)
+  noteHandler.getNotes(slideid, currentpage)
 
   $(".next").click (e) ->
     noteHandler.saveNotes()
-    currentpage++
-    noteHandler.getNotes(2, currentpage)
+    if currentpage < totalPage
+      currentpage++
+      noteHandler.getNotes(slideid, currentpage)
 
   $(".prev").click (e) ->
     noteHandler.saveNotes()
     if currentpage > 1
       currentpage--
-      noteHandler.getNotes(2, currentpage)
+      noteHandler.getNotes(slideid, currentpage)
