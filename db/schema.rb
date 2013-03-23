@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20130317083510) do
     t.datetime "updated_at",                 :null => false
     t.text     "name"
     t.text     "description"
-    t.integer  "view_count",  :default => 1
+    t.integer  "view_count",  :default => 0
     t.string   "slug"
   end
 

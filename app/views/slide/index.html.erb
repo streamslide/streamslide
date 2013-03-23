@@ -21,7 +21,8 @@
       <div class="player-progress-container">
         <div class="player-progress" style="width: <%= 100 / @slide.pages %>%;"></div>
       </div>
-  </div>
+    </div>
+    
 </div>
   <div class="extra">
     <div class="author">
@@ -46,8 +47,8 @@
       </div>
       <div class='img loading' id='streaming-gif' style='display:none;'><img src='/assets/streamload.gif'></div>
       <div class='img loading' id='pause-gif' style='display:none;'><img src='/assets/streampause.gif'></div>
-      <div>
-    </div>
+      <div id="questions-list">
+      </div>
   </div>
 </div>
 
@@ -57,5 +58,6 @@
   var slideid = "<%= @slide.id %>";
 </script>
 <% content_for :javascript do %>
-  <%= javascript_include_tag 'backbone/launchvn','slideplayer','streamingfw/publisher','slide', 'notehandler', 'note', 'streamingfw/receiver',"http://streamslide-event.herokuapp.com/faye.js" %>
+  <%= stylesheet_link_tag 'chat' %>
+  <%= javascript_include_tag 'backbone/launchvn','slideplayer','streamingfw/publisher', 'streamingfw/questioncontroller','slide', 'notehandler', 'note', 'streamingfw/receiver',"http://streamslide-event.herokuapp.com/faye.js" %>
 <% end %>

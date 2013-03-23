@@ -1,8 +1,11 @@
-$width: 500px;
+$slidesize: 500px;
 .main-player {
-  width:  $width;
-  float: left;
-  margin-right: 10px;
+  float: none;
+  width:  100%;
+}
+
+.player-progress-container {
+  width:  100%;
 }
 
 div.img.loading {
@@ -10,4 +13,19 @@ div.img.loading {
   height: 30px;  
   float: right;
   position: absolute;
+}
+
+div.slide {
+}
+
+div#asking-wrap {
+  width: 100%;
+  background-color: #BCD4D1;
+  margin-top: 15px;
+  border-radius: 15px;
+}
+
+#input-asking {
+  width: 90%;
+  margin: auto;
 }

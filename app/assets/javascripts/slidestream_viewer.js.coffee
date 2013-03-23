@@ -18,10 +18,10 @@ $(document).ready ()->
   window.publisher.turnon()
   window.publisher.addablility('pubquestion')
 
-  $("#to-speaker-send").click ->
-    $form = $(this).closest("#to-speaker-form")
-    text = $form.find("#to-speaker-message").val()
-    mes = controller: 'getquestion', command: 'addtodom', type: 'pubquestion', ext: {messagecontent: text}
+  $("#btn-asking").click ->
+    $form = $(this).closest("#asking-wrap")
+    text = $form.find("#input-asking").val()
+    mes = controller: 'question', command: 'add', type: 'pubquestion', ext: {messagecontent: text}
 
     window.publisher.publish mes
   true

@@ -34,9 +34,9 @@ class Receiver
         when 'receiver'
           controller = new ReceiverDomController
           controller.execute(command)
-        when 'getquestion'
-          question = ext.messagecontent
-          alert(question)
+        when 'question'
+          controller =  new QuestionController
+          controller.execute(command, ext)
         else
           return
 
