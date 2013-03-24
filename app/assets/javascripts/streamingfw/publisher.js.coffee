@@ -2,7 +2,7 @@ class Publisher
   constructor: (@faye, @channel, @state = null, @abilities=[]) ->
     console.log 'publisher created'
     @STATEOPTIONS = ON: 'on', STOP: 'stop', OFF: 'off'
-    @ABILITYLIST = ['pubmessage', 'pubcommand', 'pubquestion']
+    @ABILITYLIST = ['pubmessage', 'pubcommand', 'pubquestion', 'pubchat']
     @faye.subscribe @channel, (data) ->
 
     @state = @STATEOPTIONS.OFF
@@ -54,7 +54,7 @@ class Publisher
     return true
   
   makemessage: (controller, command, type, ext) ->
-    MAPPER = 'pubcommand':'recvcommand', 'pubmessage':'recvmessage', 'pubquestion':'recvquestion'
+    MAPPER = 'pubcommand':'recvcommand', 'pubmessage':'recvmessage', 'pubquestion':'recvquestion','pubchat':'recvchat'
 
     data = controller: controller, command: command, type: MAPPER[type]
     if ext?

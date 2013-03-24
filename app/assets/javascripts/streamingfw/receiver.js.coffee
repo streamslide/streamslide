@@ -1,7 +1,7 @@
 class Receiver
   constructor: (@faye, @channel, @abilities=[]) ->
     self = this
-    @ABILITYLIST = ['recvmessage', 'recvcommand', 'recvquestion']
+    @ABILITYLIST = ['recvmessage', 'recvcommand', 'recvquestion', 'recvchat']
     @faye.subscribe @channel, (data) ->
       self.execute(data.content)
   
@@ -36,6 +36,9 @@ class Receiver
           controller.execute(command)
         when 'question'
           controller =  new QuestionController
+          controller.execute(command, ext)
+        when 'chat'
+          controller = new ChatController
           controller.execute(command, ext)
         else
           return

@@ -29,19 +29,6 @@
   <div id="right-sidebar" class="span5">
     <div id="chat-area">
       <div id="message-area">
-      <p> message 1 </p>
-      <p> message 1 </p>
-      <p> message 1 </p>
-      <p> message 1 </p>
-      <p> message 1 </p>
-      <p> message 1 </p>
-      <p> message 1 </p>
-      <p> message 1 </p>
-      <p> message 1 </p>
-      <p> message 1 </p>
-      <p> message 1 </p>
-      <p> message 1 </p>
-      <p> message 1 </p>
       </div>
       <div id="input-chat-area">
         <input id="input-chat" type="text" >
@@ -50,18 +37,6 @@
     </div>
 
     <div id="questions-list">
-      <p> question 1 </p>
-      <p> question 1 </p>
-      <p> question 1 </p>
-      <p> question 1 </p>
-      <p> question 1 </p>
-      <p> question 1 </p>
-      <p> question 1 </p>
-      <p> question 1 </p>
-      <p> question 1 </p>
-      <p> question 1 </p>
-      <p> question 1 </p>
-      <p> question 1 </p>
     </div>  
   </div>
 <% end %>
@@ -73,5 +48,5 @@
 <% content_for :javascript do %>
   <%= stylesheet_link_tag 'chat' %>
   <%= stylesheet_link_tag 'slide/viewer' %>
-  <%= javascript_include_tag 'slideplayer','streamingfw/receiver','streamingfw/publisher', 'streamingfw/slidecontroller', 'streamingfw/receiverdomcontroller','slidestream_viewer',"http://streamslide-event.herokuapp.com/faye.js"%>
+  <%= javascript_include_tag 'slideplayer','streamingfw/receiver','streamingfw/publisher', 'streamingfw/questioncontroller', 'streamingfw/chatcontroller','streamingfw/slidecontroller', 'streamingfw/receiverdomcontroller','slidestream_viewer',"http://streamslide-event.herokuapp.com/faye.js"%>
 <% end %>
