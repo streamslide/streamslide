@@ -43,14 +43,20 @@ class Publisher
 
     if @state == @STATEOPTIONS.ON and (type in @abilities)
       message = this.makemessage(controller, command, type, ext)
-      publication = @faye.publish(@channel, message)
-      success = ()->
-        console.log('publish success')
-      error = (e)->
-        console.log('publish error' + e)
+      #publication = @faye.publish(@channel, message)
+      #success = ()->
+      #  console.log('publish success')
+      #error = (e)->
+      #  console.log('publish error' + e)
 
-      publication.callback success
-      publication.errback error
+      #publication.callback success
+      #publication.errback error
+      $.post '/fayemessages/publish',
+        'data': message
+        'channel' : @channel
+        (data) ->
+          console.log 'publish success'
+
     return true
   
   makemessage: (controller, command, type, ext) ->

@@ -38,6 +38,8 @@ Launchvn::Application.routes.draw do
 
   #streaming
   get '/stream/:username/:sessionid' => 'streamsessions#index'
-
   get '/:username/:slug' => 'slide#index', :as => "slide_index"
+
+  #faye message
+  post '/fayemessages/publish'
 end
