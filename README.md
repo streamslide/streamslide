@@ -31,6 +31,7 @@ export AWS_ACCESS_KEY_ID=<value>
 export AWS_SECRET_ACCESS_KEY=<value>
 export AWS_S3_BUCKET_NAME=<value>
 export REDIS_URL=<value>
+export FAYE_TOKEN=<value>
 ```
 
 ## 2. Deployment
