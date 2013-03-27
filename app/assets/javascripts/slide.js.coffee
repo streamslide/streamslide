@@ -1,4 +1,12 @@
 $(document).ready ()->
+  clip = new ZeroClipboard document.getElementById("zeroclipbtn"), { moviePath: "/ZeroClipboard/ZeroClipboard.swf" }
+  clip.on "load", (client) ->
+
+  clip.on "complete", (client, args)->
+    alert("yanked")
+
+  clip.glue document.getElementById("zeroclipbtn")
+
   player = new SlidePlayer(slidePrefixUrl, totalPage)
   player.preload()
   window.player = player #there is only one player instance
@@ -40,6 +48,8 @@ $(document).ready ()->
       $showurl = $("#stream-url-name")
       $showurl.find("input").attr("value", response.url)
       $showurl.show()
+      $("#zeroclipbtn").attr "data-clipboard-text", response.url
+
     $.get '/streamsessions/generate', {slug_name: slug_name, page: player.currentPage}, callback, 'json'
 
   $('#stop-session').click ->
@@ -61,7 +71,6 @@ $(document).ready ()->
     window.publisher.turnon()
     $('#streaming-gif').show()
     $('#pause-gif').hide()
-
 
   launchFullscreen = (element) ->
     if element.requestFullScreen

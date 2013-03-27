@@ -1,6 +1,6 @@
 <div id="stream-url-name"class="input-append" style="display:none;">
   <input type="text" placeholder="Type something…">
-  <div class='btn' id="yank">copy to clipboard</div> <!--[TODO]-->
+  <div id="zeroclipbtn" class="btn" data-clipboard-text="Copy me!"> Yank </div>
 </div>
 <div class="slide">
   <div style="display:none;" id='event-server'><%= Settings.defaults[:event_server] %></div>
@@ -60,4 +60,5 @@
 <% content_for :javascript do %>
   <%= stylesheet_link_tag 'chat' %>
   <%= javascript_include_tag 'backbone/launchvn','slideplayer','streamingfw/publisher', 'streamingfw/questioncontroller','slide', 'notehandler', 'note', 'streamingfw/receiver',"http://streamslide-event.herokuapp.com/faye.js" %>
+  <%= javascript_include_tag "ZeroClipboard/ZeroClipboard" %>
 <% end %>
