@@ -41,5 +41,5 @@ Launchvn::Application.routes.draw do
   get '/:username/:slug' => 'slide#index', :as => "slide_index"
 
   #faye message
-  post '/fayemessages/publish'
+  post '/fayemessages/auth_publish'
 end

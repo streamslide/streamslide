@@ -39,7 +39,7 @@ class SlidePlayer
   prev: () ->
     @gotoPage(@currentPage - 1)
     if window.publisher?
-      mes = controller: 'slide', command: 'prev', type: 'pubcommand'
+      mes = controller: 'slide', command: 'prev', type: 'pubcommand', through: 'faye'
       window.publisher.publish mes
       $.post '/streamsessions/set_page',
         from: 'host'
@@ -49,7 +49,7 @@ class SlidePlayer
   next: () ->
     @gotoPage(@currentPage + 1)
     if window.publisher?
-      mes = controller: 'slide', command: 'next', type: 'pubcommand'
+      mes = controller: 'slide', command: 'next', type: 'pubcommand', through: 'faye'
       window.publisher.publish mes
       $.post '/streamsessions/set_page',
         from: 'host'

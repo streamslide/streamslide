@@ -1,5 +1,7 @@
-<div id='channel-name' style='display:none;'><%= channel_name %></div>
-<div style="display:none;" id='event-server'><%= Settings.defaults[:event_server] %></div>
+<meta name="session_channel" content="<%=channel_name%>">
+<meta name="session_event_server" content="<%=Settings.eventserv%>">
+<meta name="session_token" content="<%= session_token%>">
+
 <div class='left-sidebar span6'>
   <div class="main-player">
     <div class="header primary-color">

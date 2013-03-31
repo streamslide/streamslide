@@ -38,7 +38,7 @@ $(document).ready ()->
       if window.publisher?
         window.publisher = null
       faye = new Faye.Client(event_server)
-      window.publisher = new Publisher(faye, response.channel)
+      window.publisher = new Publisher(faye, response.channel, 'master', response.token)
       window.publisher.turnon()
       window.publisher.addablility('pubcommand')
 
