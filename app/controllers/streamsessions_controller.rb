@@ -26,7 +26,7 @@ class StreamsessionsController < ApplicationController
     @slide = Slide.where(:user_id =>host.id , :slug => slug).first
     channel_name = "/#{host.username}/#{slug}"
     
-    render 'slide/viewer/index', :locals=>{channel_name: channel_name, session_token: session_token}
+    render 'slide/viewer/index', :locals=>{channel_name: channel_name, session_token: session_token, slug: slug, host: host.username}
   end
 
   def set_page

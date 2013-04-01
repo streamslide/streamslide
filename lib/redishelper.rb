@@ -35,7 +35,7 @@ class Redishelper
     q_id = @db_instance.get "#{host}:streamslide:question_incr"
 
     @db_instance.set "#{host}:streamslide:question_incr", q_id
-    @db_instance.set "#{host}:streamslide:question:#{q_id}", {content: ques, usr: {name: usr.username, avatar: usr.image_url}}.to_json
+    @db_instance.set "#{host}:streamslide:question:#{q_id}", {content: ques, usr: usr}.to_json
     @db_instance.sadd "#{host}:streamslide:questions", "#{host}:streamslide:question:#{q_id}"
     @db_instance.incr "#{host}:streamslide:question_incr" #generate increment id for questions
   end

@@ -12,10 +12,8 @@ $(document).ready ()->
   event_server = $("meta[name=session_event_server]").attr("content")
   channel_name = $("meta[name=session_channel]").attr("content")
   session_token = $("meta[name=session_token]").attr("content")
-
-  alert(event_server)
-  alert(channel_name)
-  alert(session_token)
+  slug = $("meta[name=session_slug]").attr("content")
+  host = $("meta[name=session_host]").attr("content")
 
   faye = new Faye.Client(event_server)
 
@@ -33,12 +31,12 @@ $(document).ready ()->
   $("#chat-btn").click ->
     $form = $(this).closest("#input-chat-area")
     text = $form.find("#input-chat").val()
-    mes = controller: 'chat', command: 'add', type: 'pubchat', through: 'rails', ext: {messagecontent: text}
+    mes = controller: 'chat', command: 'add', type: 'pubchat', through: 'rails', ext: {messagecontent: text, host: host, slug: slug}
     window.publisher.publish mes
 
   $("#btn-asking").click ->
     $form = $(this).closest("#asking-wrap")
     text = $form.find("#input-asking").val()
-    mes = controller: 'question', command: 'add', type: 'pubquestion', through: 'rails', ext: {messagecontent: text}
+    mes = controller: 'question', command: 'add', type: 'pubquestion', through: 'rails', ext: {messagecontent: text, host: host, slug: slug}
     window.publisher.publish mes
   true

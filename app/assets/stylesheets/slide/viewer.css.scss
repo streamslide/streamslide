@@ -29,3 +29,29 @@ div#asking-wrap {
   width: 90%;
   margin: auto;
 }
+
+.questioncell {
+  height: 30px;  
+}
+
+.questioncell .votecell {
+  float: right;
+  height: 100%;  
+  width: 30px;
+}
+
+.vote-up {
+  width: 100%;
+  height: 50%;
+  background-color: red; 
+}
+
+.vote-down {
+  width: 100%;
+  height: 50%;
+  background-color: blue; 
+}
+
+.questioncell .questioncontent {
+  float: left  
+}
