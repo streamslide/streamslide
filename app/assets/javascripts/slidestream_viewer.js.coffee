@@ -39,4 +39,17 @@ $(document).ready ()->
     text = $form.find("#input-asking").val()
     mes = controller: 'question', command: 'add', type: 'pubquestion', through: 'rails', ext: {messagecontent: text, host: host, slug: slug}
     window.publisher.publish mes
+
+  $(".voteup").live 'click', () ->
+      $cell = $(this).closest('.questioncell')
+      id = $cell.attr("id")
+      mes = controller: 'question', command:'voteup', type: 'pubquestion', through: 'rails', ext:{host: host, slug: slug, qid: id}
+      window.publisher.publish mes
+
+  $(".votedown").live 'click', () ->
+      $cell = $(this).closest('.questioncell')
+      id = $cell.attr("id")
+      mes = controller: 'question', command:'votedown', type: 'pubquestion', through: 'rails', ext:{host: host, slug: slug, qid: id}
+      window.publisher.publish mes
+
   true
