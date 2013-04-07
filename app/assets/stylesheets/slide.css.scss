@@ -67,3 +67,27 @@ $width: 708px;
   @include border-radius(10px);
   @include background-image-gradient(#38ad75, #0e6355);
 }
+
+.questioncell {
+  height: 50px;  
+}
+
+.questioncell .votecell {
+  float: right;
+  height: 100%;  
+  width: 30px;
+}
+
+.questioncell .questioncontent {
+  float: left  
+}
+
+.votenum {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  font-family: "Verdana";
+  font-size: 15px;
+  background: yellow;
+}

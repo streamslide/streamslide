@@ -31,7 +31,7 @@ div#asking-wrap {
 }
 
 .questioncell {
-  height: 30px;  
+  height: 50px;  
 }
 
 .questioncell .votecell {
@@ -44,11 +44,20 @@ div#asking-wrap {
   display: block;
   margin: 0 auto;
   width: 100%;
-  height: 50%;
+  height: 20%;
 }
 
 .voteup {background: blue;}
 .votedown {background: red;}
+.votenum {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 60%;
+  font-family: "Verdana";
+  font-size: 15px;
+  background: yellow;
+}
 
 .questioncell .questioncontent {
   float: left  
