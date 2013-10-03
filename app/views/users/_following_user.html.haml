@@ -1,0 +1,9 @@
+.following-user
+  = image_tag user.avatar_url, :class => :author_avatar
+  .user-info
+    .author_name= user.name
+    %div
+      = user.slides.count
+      slides
+  .follow-btn
+    = render partial: 'follows/follow_btn', locals: {user: user}

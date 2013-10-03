@@ -1,0 +1,32 @@
+.carousel.slide#topPage
+  .carousel-inner
+    .item.active
+      %img(src='http://bootstrapdocs.com/v2.0.3/docs/assets/img/bootstrap-mdo-sfmoma-01.jpg')
+      .carousel-caption
+        %h4 
+          Streamslide introduction 1
+        %p 
+          Streamslide introduction 1
+    .item
+      %img(src='http://bootstrapdocs.com/v2.0.3/docs/assets/img/bootstrap-mdo-sfmoma-01.jpg')
+      .carousel-caption
+        %h4 
+          Streamslide introduction 2
+        %p 
+          Streamslide introduction 2
+    .item
+      %img(src='http://bootstrapdocs.com/v2.0.3/docs/assets/img/bootstrap-mdo-sfmoma-01.jpg')
+      .carousel-caption
+        %h4 
+          Streamslide introduction 3
+        %p 
+          Streamslide introduction 3
+  %a.left.carousel-control{'data-slide'=>'prev', 'href'=>'#topPage'}
+  %a.right.carousel-control{'data-slide'=>'next', 'href'=>'#topPage'}
+
+:javascript
+  jQuery(function($){
+    $('.carousel').carousel({
+      interval: 3000
+    });
+  });

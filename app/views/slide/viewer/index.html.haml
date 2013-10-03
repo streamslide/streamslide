@@ -1,0 +1,41 @@
+%meta{:content => channel_name, :name => "session_channel"}/
+%meta{:content => Settings.eventserv, :name => "session_event_server"}/
+%meta{:content => session_token, :name => "session_token"}/
+%meta{:content => slug, :name => "session_slug"}/
+%meta{:content => host, :name => "session_host"}/
+.left-sidebar.span6
+  .main-player
+    .header.primary-color
+      #streaming-gif.img.loading{:style => "display:none;"}
+        %img{:src => "/assets/streamload.gif"}/
+      #fullscreen-btn
+    / header
+    .player
+      %img#current-slide{:src => @slide.page_url 1}/
+    .footer.primary-color
+      .controls{:style => "display:none;"}
+        .prev.control-btn
+        .next.control-btn
+      .player-progress-container
+        .player-progress{:style => "width: #{100 / @slide.pages}%;"}
+    / footer
+  / main player
+  #asking-wrap
+    %input#input-asking{:type => "text"}/
+    %button#btn-asking.btn.btn-primary.btn-small.btn-info{:type => "button"} ASK PRESENTER
+/ slide
+- unless current_user.nil?
+  #right-sidebar.span5
+    #chat-area
+      #message-area
+      #input-chat-area
+        %input#input-chat{:type => "text"}/
+        %button#chat-btn.btn.btn-primary.btn-small.btn-info{:type => "button"} SEND
+    #questionslist
+:javascript
+  var slidePrefixUrl = "#{@slide.slide_url_prefix}";
+  var totalPage = "#{@slide.pages}";
+- content_for :javascript do
+  = stylesheet_link_tag 'chat'
+  = stylesheet_link_tag 'slide/viewer'
+  = javascript_include_tag 'slideplayer','streamingfw/receiver','streamingfw/publisher', 'streamingfw/questioncontroller', 'streamingfw/chatcontroller','streamingfw/slidecontroller', 'streamingfw/receiverdomcontroller','slidestream_viewer',"http://streamslide-event.herokuapp.com/faye.js"

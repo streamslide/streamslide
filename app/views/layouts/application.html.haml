@@ -10,7 +10,7 @@
     = stylesheet_link_tag "application", :media => "all"
     = csrf_meta_tags
     = yield(:head)
-
+    = javascript_include_tag "application"
   %body
     %header.navbar.navbar-fixed-top
       %div.navbar-inner
@@ -28,6 +28,5 @@
     %footer.container
       = render 'layouts/footer'
 
-    = javascript_include_tag "application"\
     = javascript_include_tag :defaults 
     = yield(:javascript)

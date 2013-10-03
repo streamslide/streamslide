@@ -1,0 +1,29 @@
+.slide
+  .primary-info
+    %p/
+    %h2 Upload a PDF
+    = s3_uploader_form post: "upload/status", as: "file", id: "myS3Uploader", key: @slide.s3_upload_key do
+      = file_field_tag :file, multiple: false
+    .btn.primary Select PDF to Upload
+  .secondary-info
+    %h2
+      Edit the details
+      = form_for(:slide, :url => "/slide/edit", :method => :put)  do |f|
+        = f.hidden_field :s3_key, :value => @slide.s3_key
+        = f.label :name
+        = f.text_field :name, :class => 'filename'
+        = f.label :description
+        = f.text_field :description
+        = f.submit "Upload PDF to save", :class => "btn primary disable"
+%script#template-upload{:type => "text/x-tmpl"}
+  <div class="data-context">
+  <p><h2>Watch the Progress</h2></p>
+  <div class="progress">
+  <div class="bar" id="upload_bar" style="width: 0%"></div>
+  </div>
+  <div class="progress">
+  <div id="processing_bar" style="width: 0%"></div>
+  </div>
+  </div>
+- content_for :javascript do
+  = javascript_include_tag 'upload'

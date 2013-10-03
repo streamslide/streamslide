@@ -1,0 +1,53 @@
+#stream-url-name.input-append{:style => "display:none;"}
+  %input{:placeholder => "Type something…", :type => "text"}/
+  #zeroclipbtn.btn{"data-clipboard-text" => "Copy me!"} Yank
+.slide
+  #event-server{:style => "display:none;"}= Settings.eventserv
+  #slug-name{:style => "display:none;"}= @slide.slug
+  .main-player
+    .header.primary-color
+      #fullscreen-btn
+    #player-container.player{:style => "position: relative"}
+      %img#current-slide{:src => @slide.page_url 1}/
+      #notesarea
+    .footer.primary-color
+      .controls
+        .prev.control-btn
+        .next.control-btn
+      .player-progress-container
+        .player-progress{:style => "width: #{100 / @slide.pages}%;"}
+  .extra
+    .author
+      = image_tag @slide.author.avatar_url, :class => :author_avatar
+      .author_name= @slide.author.name
+      %div
+        = @slide.author.slides.count
+        slides
+    .stats
+      .view_count= @slide.view_count
+    .share
+      Share
+      .download
+        = link_to "Download PDF", @slide.pdf_url
+      .btn-group
+        %a#start-session.btn{:href => "javascript:void(0);"}
+          %i.icon-play
+        %a#stop-session.btn{:href => "javascript:void(0)"}
+          %i.icon-pause
+        %a#resume-session.btn{:href => "javascript:void(0)"}
+          %i.icon-share-alt
+        %a#delete-session.btn{:href => "javascript:void(0)"}
+          %i.icon-stop
+      #streaming-gif.img.loading{:style => "display:none;"}
+        %img{:src => "/assets/streamload.gif"}/
+      #pause-gif.img.loading{:style => "display:none;"}
+        %img{:src => "/assets/streampause.gif"}/
+      #questionslist
+  :javascript
+    var slidePrefixUrl = "#{@slide.slide_url_prefix}";
+    var totalPage = "#{@slide.pages}";
+    var slideid = "#{@slide.id}";
+  - content_for :javascript do
+    = stylesheet_link_tag 'chat'
+    = javascript_include_tag 'backbone/launchvn','slideplayer','streamingfw/publisher', 'streamingfw/questioncontroller','slide', 'notehandler', 'note', 'streamingfw/receiver',"http://streamslide-event.herokuapp.com/faye.js"
+    = javascript_include_tag "ZeroClipboard/ZeroClipboard"

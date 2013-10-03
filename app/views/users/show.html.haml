@@ -1,0 +1,15 @@
+.user-deck
+  .main-container
+    %h1
+      Talks by #{@user.name}
+    %p
+      - @user.slides.each do |slide|
+        = render partial: "slide/slide", locals: {slide: slide}
+      - (9-@user.slides.count).times do
+        = render partial: "slide/empty_slide"
+  .extras
+    %h1 The Speaker
+    %p
+    = render @user
+- content_for :javascript do
+  = javascript_include_tag 'slidepreview'

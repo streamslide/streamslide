@@ -1,0 +1,18 @@
+.box-center
+  .signin-wrapper
+    %h2 Sign in using
+    %ul#social-login.signup
+      %li.facebook.btn
+        = link_to "Sign up with your Facebook account", |
+          user_omniauth_authorize_path(:facebook)       |
+    %h3 or your account
+    = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+      = devise_error_messages!
+      = f.text_field :login, :placeholder => "Your email address or your username"
+      = f.password_field :password, :placeholder => "Password"
+      - if devise_mapping.rememberable?
+        = f.hidden_field :remember_me, :value => 1
+      = f.submit "Sign in", :class => "btn primary submit"
+      - if devise_mapping.recoverable? && controller_name != 'passwords'
+        = link_to "Forgot your password?", new_password_path(resource_name), |
+          :class => "btn btn-warning submit"                                 |

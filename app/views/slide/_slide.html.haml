@@ -1,0 +1,10 @@
+.slide-thumb{"slide-page-count" => "#{slide.pages}", "loaded-page-count"=>1}
+  = link_to(slide_index_path(:username => slide.user.username, :slug => slide.slug), class: "slide-preview") do
+    .preview-progress-container{:style => "visibility: hidden"}
+      .preview-progress{:style => "width: #{100 / slide.pages}%;"}
+    = image_tag slide.thumbnail_url(1), class: 'page-thumbnail 1'
+  .slide-info
+    %h3.slide-name= slide.name
+    %p.slide-date
+      = slide.created_at.strftime("%b %d %Y")
+      by #{link_to slide.user.username, slide.user}

@@ -1,0 +1,5 @@
+- if current_user && current_user != user
+  - if !current_user.followed?(user.id)
+    = link_to "Follow", create_follow_path(user_id: current_user.id, following_user_id: user.id), method: :post, remote: true , id: "follow-#{user.id}", class: "btn btn-small btn-block"
+  - else
+    = link_to "Unfollow", create_unfollow_path(user_id: current_user.id, following_user_id: user.id), method: :post, remote: true , id: "unfollow-#{user.id}", class: "btn btn-small btn-block"

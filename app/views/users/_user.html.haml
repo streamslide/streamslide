@@ -1,0 +1,8 @@
+.author
+  = image_tag user.avatar_url, :class => :author_avatar
+  .author_name= user.name
+  %div
+    = user.slides.count
+    slides
+  %div
+    = render partial: 'follows/follow_btn', locals: {user: user}
