@@ -1,6 +1,7 @@
 #stream-url-name.input-append{:style => "display:none;"}
   %input{:placeholder => "Type something…", :type => "text"}/
   #zeroclipbtn.btn{"data-clipboard-text" => "Copy me!"} Yank
+
 .slide
   #event-server{:style => "display:none;"}= Settings.eventserv
   #slug-name{:style => "display:none;"}= @slide.slug
@@ -8,7 +9,7 @@
     .header.primary-color
       #fullscreen-btn
     #player-container.player{:style => "position: relative"}
-      %img#current-slide{:src => @slide.page_url 1}/
+      %img#current-slide{:src => @slide.page_url(1)}
       #notesarea
     .footer.primary-color
       .controls
@@ -43,11 +44,12 @@
       #pause-gif.img.loading{:style => "display:none;"}
         %img{:src => "/assets/streampause.gif"}/
       #questionslist
-  :javascript
-    var slidePrefixUrl = "#{@slide.slide_url_prefix}";
-    var totalPage = "#{@slide.pages}";
-    var slideid = "#{@slide.id}";
-  - content_for :javascript do
-    = stylesheet_link_tag 'chat'
-    = javascript_include_tag 'backbone/launchvn','slideplayer','streamingfw/publisher', 'streamingfw/questioncontroller','slide', 'notehandler', 'note', 'streamingfw/receiver',"http://streamslide-event.herokuapp.com/faye.js"
-    = javascript_include_tag "ZeroClipboard/ZeroClipboard"
+- content_for :javascript do
+  = stylesheet_link_tag 'chat'
+  = javascript_include_tag 'backbone/launchvn','slideplayer','streamingfw/publisher', 'streamingfw/questioncontroller','slide', 'notehandler', 'note', 'streamingfw/receiver',"http://streamslide-event.herokuapp.com/faye.js"
+  = javascript_include_tag "ZeroClipboard/ZeroClipboard"
+
+:javascript
+  var slidePrefixUrl = "#{@slide.slide_url_prefix}";
+  var totalPage = "#{@slide.pages}";
+  var slideid = "#{@slide.id}";
