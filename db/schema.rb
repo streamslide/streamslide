@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130317083510) do
+ActiveRecord::Schema.define(:version => 20131006111113) do
 
   create_table "follows", :force => true do |t|
     t.integer  "following_user_id"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20130317083510) do
     t.string   "uid"
     t.string   "name"
     t.text     "username"
+    t.string   "slideshare_user_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

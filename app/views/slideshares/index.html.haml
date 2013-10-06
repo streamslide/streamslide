@@ -1,0 +1,20 @@
+.browse
+  .main-container
+    %h1 Browse
+    %p
+    - @slides.each do |slide|
+      = render partial: 'slide', locals: {slide: slide}
+  .extras
+    %h1 Infor
+    %p
+- content_for :javascript do
+  = javascript_include_tag 'slidepreview'
+
+:javascript
+  (function($) {
+    $(".slide_fetch").click(function(e){
+      var slideshare_id = $(this).data('id');
+      alert(slideshare_id);
+      e.preventDefault(); 
+    });
+  })(jQuery);

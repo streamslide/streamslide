@@ -9,9 +9,17 @@ class User < ActiveRecord::Base
   has_many :follows, :dependent => :destroy
 
   attr_accessor :login
-  attr_accessible :email, :name, :image_url, :username,
-                  :password, :password_confirmation,
-                  :remember_me, :provider, :uid, :login
+  attr_accessible :email, 
+    :slideshare_user_name,
+    :name, 
+    :image_url, 
+    :username,
+    :password, 
+    :password_confirmation,
+    :remember_me, 
+    :provider, 
+    :uid, 
+    :login
 
   validates_uniqueness_of :username
 

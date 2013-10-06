@@ -17,13 +17,15 @@ gem 'unicorn' , '~>4.5.0'
 gem 'pg' , '~>0.14.1'
 gem 'sidekiq' , '~>2.6.5'
 gem 'sidekiq-status', '~>0.1.0'
-gem 'httparty', '~>0.9.0'
+gem 'httparty'
 gem 'sinatra', require: false
 gem 'slim', '~>1.3.6'
 gem 'eventmachine', '~>1.0.0'
 gem 'em-http-request', '~>1.0.3'
 gem 'happening', '~>0.2.5'
 gem 'redis'
+gem 'dotenv-rails'
+gem 'slideshare', git: 'git://github.com/huydx/slideshare.git'
 
 group :development do
   gem 'sqlite3'
@@ -36,6 +38,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'minitest', '~> 4.5.0'
+  gem 'sextant'
 end
 
 group :assets do

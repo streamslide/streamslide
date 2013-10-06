@@ -1,8 +1,8 @@
 require 'sidekiq/web'
 
 Launchvn::Application.routes.draw do
-
   mount Sidekiq::Web, at: '/sidekiq'
+  mount_sextant if Rails.env.development?
 
   devise_scope :user do
     get '/auth/:provider' => 'users/omniauth_callbacks#passthru'
@@ -42,4 +42,7 @@ Launchvn::Application.routes.draw do
 
   #faye message
   post '/fayemessages/auth_publish'
+
+  #slideshare integreate
+  resources :slideshares
 end

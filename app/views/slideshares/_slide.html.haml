@@ -1,0 +1,7 @@
+.slide-thumb
+  %a.slide_fetch{href:'#', 'data-id' => "#{slide[:info]["ID"]}"}
+    = image_tag 'slide_fetch_icon.png', size: '30x30'
+  = link_to(slide[:info]["URL"], class: "slide-preview") do
+    %img.page-thumbnail{'src' => "http://#{slide[:images][0]}"}
+  .slide-info
+    %h3.slide-name= slide[:info]["Title"]

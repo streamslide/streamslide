@@ -7,6 +7,7 @@
     - if user_signed_in?
       %li= link_to "Browse", browse_path
       %li= link_to "Upload", '/new'
+      %li= link_to "Slideshare", slideshares_path
       %li.dropdown
         .dropdown-toggle{"data-toggle" => "dropdown"}
           = image_tag current_user.avatar_url, :class => :avatar
@@ -16,7 +17,7 @@
           %li= link_to "My Decks", current_user
           %li= link_to "Settings", edit_user_registration_path
           %li= link_to "Following", following_path(current_user.id)
-        %hr{:style => "margin:0;"}/
+        %hr{:style => "margin:0;"}
       %li= link_to "Sign out", destroy_user_session_path, :method => :delete
     - else
       %li= link_to "LOG IN", new_user_session_path
